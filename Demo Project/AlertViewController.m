@@ -5,19 +5,31 @@
 //  Created by Peyton Randolph on 7/10/12.
 //
 
-#import "ViewController.h"
+#import "AlertViewController.h"
 
 #import "MOOMessageAlertView.h"
 
-@interface ViewController ()
+@interface AlertViewController ()
 
 @end
 
-@interface ViewController (MOOAlertViewDelegate) <MOOAlertViewDelegate>
+@interface AlertViewController (MOOAlertViewDelegate) <MOOAlertViewDelegate>
 
 @end
 
-@implementation ViewController
+@implementation AlertViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
+{
+    if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+        return nil;
+    
+    // Configure tab bar
+    self.title = NSLocalizedString(@"Alerts", @"Alerts");
+    self.tabBarItem.image = [UIImage imageNamed:@"Alert.png"];
+    
+    return self;
+}
 
 - (void)loadView;
 {

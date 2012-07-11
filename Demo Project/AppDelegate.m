@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "AlertViewController.h"
 
 @implementation AppDelegate
 
@@ -15,8 +15,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.viewController = [[ViewController alloc] initWithNibName:nil bundle:nil];
-    self.window.rootViewController = self.viewController;
+    AlertViewController *alertViewController = [[AlertViewController alloc] initWithNibName:nil bundle:nil];
+    
+    UITabBarController *rootController = [[UITabBarController alloc] init];
+    rootController.viewControllers = [NSArray arrayWithObjects:alertViewController, nil];
+    self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];
     return YES;
 }

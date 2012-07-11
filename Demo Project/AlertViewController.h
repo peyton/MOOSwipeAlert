@@ -8,7 +8,7 @@
 
 @class MOOMessageAlertView;
 
-@interface ViewController : UIViewController
+@interface AlertViewController : UIViewController
 {
     MOOMessageAlertView *_alertView;
     MOOMessageAlertView *_noDisappearAlertView;

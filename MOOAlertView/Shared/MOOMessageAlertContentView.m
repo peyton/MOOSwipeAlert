@@ -26,7 +26,7 @@
         return nil;
     
     // Set property defaults
-    self.contentInsets = UIEdgeInsetsMake(16.0f, 10.0f, 16.0f, 10.0f);
+    self.contentInsets = UIEdgeInsetsMake(16.0f, 20.0f, 16.0f, 20.0f);
     self.titleSpacing = 12.0f;
     
     // Set view defaults

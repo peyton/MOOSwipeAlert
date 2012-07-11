@@ -5,12 +5,10 @@
 //  Created by Peyton Randolph on 7/10/12.
 //
 
-@class ViewController;
+@class AlertViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
 
 @end
