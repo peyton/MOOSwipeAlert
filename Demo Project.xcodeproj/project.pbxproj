@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C46B62715ACF78B007FD187 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62615ACF78B007FD187 /* Icon.png */; };
+		9C46B62915ACF792007FD187 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62815ACF792007FD187 /* Icon@2x.png */; };
+		9C46B63915ACF7A9007FD187 /* MOOAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B62C15ACF7A9007FD187 /* MOOAlertView.m */; };
+		9C46B63A15ACF7A9007FD187 /* MOOMessageAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B62E15ACF7A9007FD187 /* MOOMessageAlertView.m */; };
+		9C46B63B15ACF7A9007FD187 /* CAAnimation+MOOAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63115ACF7A9007FD187 /* CAAnimation+MOOAlertView.m */; };
+		9C46B63C15ACF7A9007FD187 /* MOOAlertBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63315ACF7A9007FD187 /* MOOAlertBox.m */; };
+		9C46B63D15ACF7A9007FD187 /* MOOAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B63415ACF7A9007FD187 /* MOOAlertView.bundle */; };
+		9C46B63E15ACF7A9007FD187 /* MOOAlertViewConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63615ACF7A9007FD187 /* MOOAlertViewConstants.m */; };
+		9C46B63F15ACF7A9007FD187 /* MOOMessageAlertContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */; };
+		9CE3B4FF15ACC61F00094B83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B4FE15ACC61F00094B83 /* UIKit.framework */; };
+		9CE3B50115ACC61F00094B83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B50015ACC61F00094B83 /* Foundation.framework */; };
+		9CE3B50315ACC61F00094B83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B50215ACC61F00094B83 /* CoreGraphics.framework */; };
+		9CE3B50915ACC61F00094B83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9CE3B50715ACC61F00094B83 /* InfoPlist.strings */; };
+		9CE3B50B15ACC61F00094B83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3B50A15ACC61F00094B83 /* main.m */; };
+		9CE3B50F15ACC61F00094B83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3B50E15ACC61F00094B83 /* AppDelegate.m */; };
+		9CE3B51215ACC61F00094B83 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3B51115ACC61F00094B83 /* ViewController.m */; };
+		9CE3B54315ACE22F00094B83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B54215ACE22F00094B83 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9C46B62615ACF78B007FD187 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		9C46B62815ACF792007FD187 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		9C46B62B15ACF7A9007FD187 /* MOOAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOAlertView.h; sourceTree = "<group>"; };
+		9C46B62C15ACF7A9007FD187 /* MOOAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOAlertView.m; sourceTree = "<group>"; };
+		9C46B62D15ACF7A9007FD187 /* MOOMessageAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageAlertView.h; sourceTree = "<group>"; };
+		9C46B62E15ACF7A9007FD187 /* MOOMessageAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageAlertView.m; sourceTree = "<group>"; };
+		9C46B63015ACF7A9007FD187 /* CAAnimation+MOOAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+MOOAlertView.h"; sourceTree = "<group>"; };
+		9C46B63115ACF7A9007FD187 /* CAAnimation+MOOAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+MOOAlertView.m"; sourceTree = "<group>"; };
+		9C46B63215ACF7A9007FD187 /* MOOAlertBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOAlertBox.h; sourceTree = "<group>"; };
+		9C46B63315ACF7A9007FD187 /* MOOAlertBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOAlertBox.m; sourceTree = "<group>"; };
+		9C46B63415ACF7A9007FD187 /* MOOAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MOOAlertView.bundle; sourceTree = "<group>"; };
+		9C46B63515ACF7A9007FD187 /* MOOAlertViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOAlertViewConstants.h; sourceTree = "<group>"; };
+		9C46B63615ACF7A9007FD187 /* MOOAlertViewConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOAlertViewConstants.m; sourceTree = "<group>"; };
+		9C46B63715ACF7A9007FD187 /* MOOMessageAlertContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageAlertContentView.h; sourceTree = "<group>"; };
+		9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageAlertContentView.m; sourceTree = "<group>"; };
+		9CE3B4FA15ACC61F00094B83 /* Demo Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Demo Project.app"; path = MOOAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CE3B4FE15ACC61F00094B83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9CE3B50015ACC61F00094B83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9CE3B50215ACC61F00094B83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9CE3B50615ACC61F00094B83 /* Demo Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Demo Project-Info.plist"; sourceTree = "<group>"; };
+		9CE3B50815ACC61F00094B83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9CE3B50A15ACC61F00094B83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9CE3B50C15ACC61F00094B83 /* Demo Project-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo Project-Prefix.pch"; sourceTree = "<group>"; };
+		9CE3B50D15ACC61F00094B83 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9CE3B50E15ACC61F00094B83 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9CE3B51015ACC61F00094B83 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9CE3B51115ACC61F00094B83 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9CE3B54215ACE22F00094B83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9CE3B4F715ACC61F00094B83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CE3B54315ACE22F00094B83 /* QuartzCore.framework in Frameworks */,
+				9CE3B4FF15ACC61F00094B83 /* UIKit.framework in Frameworks */,
+				9CE3B50115ACC61F00094B83 /* Foundation.framework in Frameworks */,
+				9CE3B50315ACC61F00094B83 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C46B62A15ACF7A9007FD187 /* MOOAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				9C46B62B15ACF7A9007FD187 /* MOOAlertView.h */,
+				9C46B62C15ACF7A9007FD187 /* MOOAlertView.m */,
+				9C46B62D15ACF7A9007FD187 /* MOOMessageAlertView.h */,
+				9C46B62E15ACF7A9007FD187 /* MOOMessageAlertView.m */,
+				9C46B62F15ACF7A9007FD187 /* Shared */,
+			);
+			path = MOOAlertView;
+			sourceTree = "<group>";
+		};
+		9C46B62F15ACF7A9007FD187 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9C46B63015ACF7A9007FD187 /* CAAnimation+MOOAlertView.h */,
+				9C46B63115ACF7A9007FD187 /* CAAnimation+MOOAlertView.m */,
+				9C46B63215ACF7A9007FD187 /* MOOAlertBox.h */,
+				9C46B63315ACF7A9007FD187 /* MOOAlertBox.m */,
+				9C46B63415ACF7A9007FD187 /* MOOAlertView.bundle */,
+				9C46B63515ACF7A9007FD187 /* MOOAlertViewConstants.h */,
+				9C46B63615ACF7A9007FD187 /* MOOAlertViewConstants.m */,
+				9C46B63715ACF7A9007FD187 /* MOOMessageAlertContentView.h */,
+				9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9CE3B4EF15ACC61F00094B83 = {
+			isa = PBXGroup;
+			children = (
+				9CE3B50415ACC61F00094B83 /* Demo Project */,
+				9CE3B51B15ACC67900094B83 /* External */,
+				9CE3B4FD15ACC61F00094B83 /* Frameworks */,
+				9CE3B4FB15ACC61F00094B83 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9CE3B4FB15ACC61F00094B83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3B4FA15ACC61F00094B83 /* Demo Project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9CE3B4FD15ACC61F00094B83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3B54215ACE22F00094B83 /* QuartzCore.framework */,
+				9CE3B4FE15ACC61F00094B83 /* UIKit.framework */,
+				9CE3B50015ACC61F00094B83 /* Foundation.framework */,
+				9CE3B50215ACC61F00094B83 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9CE3B50415ACC61F00094B83 /* Demo Project */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3B50D15ACC61F00094B83 /* AppDelegate.h */,
+				9CE3B50E15ACC61F00094B83 /* AppDelegate.m */,
+				9CE3B51015ACC61F00094B83 /* ViewController.h */,
+				9CE3B51115ACC61F00094B83 /* ViewController.m */,
+				9CE3B50515ACC61F00094B83 /* Supporting Files */,
+			);
+			path = "Demo Project";
+			sourceTree = "<group>";
+		};
+		9CE3B50515ACC61F00094B83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9CE3B50615ACC61F00094B83 /* Demo Project-Info.plist */,
+				9C46B62615ACF78B007FD187 /* Icon.png */,
+				9C46B62815ACF792007FD187 /* Icon@2x.png */,
+				9CE3B50715ACC61F00094B83 /* InfoPlist.strings */,
+				9CE3B50A15ACC61F00094B83 /* main.m */,
+				9CE3B50C15ACC61F00094B83 /* Demo Project-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CE3B51B15ACC67900094B83 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9C46B62A15ACF7A9007FD187 /* MOOAlertView */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9CE3B4F915ACC61F00094B83 /* Alert View */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CE3B51815ACC61F00094B83 /* Build configuration list for PBXNativeTarget "Alert View" */;
+			buildPhases = (
+				9CE3B4F615ACC61F00094B83 /* Sources */,
+				9CE3B4F715ACC61F00094B83 /* Frameworks */,
+				9CE3B4F815ACC61F00094B83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Alert View";
+			productName = "Demo Project";
+			productReference = 9CE3B4FA15ACC61F00094B83 /* Demo Project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9CE3B4F115ACC61F00094B83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Peyton Randolph";
+			};
+			buildConfigurationList = 9CE3B4F415ACC61F00094B83 /* Build configuration list for PBXProject "Demo Project" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9CE3B4EF15ACC61F00094B83;
+			productRefGroup = 9CE3B4FB15ACC61F00094B83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9CE3B4F915ACC61F00094B83 /* Alert View */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9CE3B4F815ACC61F00094B83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CE3B50915ACC61F00094B83 /* InfoPlist.strings in Resources */,
+				9C46B62715ACF78B007FD187 /* Icon.png in Resources */,
+				9C46B62915ACF792007FD187 /* Icon@2x.png in Resources */,
+				9C46B63D15ACF7A9007FD187 /* MOOAlertView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9CE3B4F615ACC61F00094B83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CE3B50B15ACC61F00094B83 /* main.m in Sources */,
+				9CE3B50F15ACC61F00094B83 /* AppDelegate.m in Sources */,
+				9CE3B51215ACC61F00094B83 /* ViewController.m in Sources */,
+				9C46B63915ACF7A9007FD187 /* MOOAlertView.m in Sources */,
+				9C46B63A15ACF7A9007FD187 /* MOOMessageAlertView.m in Sources */,
+				9C46B63B15ACF7A9007FD187 /* CAAnimation+MOOAlertView.m in Sources */,
+				9C46B63C15ACF7A9007FD187 /* MOOAlertBox.m in Sources */,
+				9C46B63E15ACF7A9007FD187 /* MOOAlertViewConstants.m in Sources */,
+				9C46B63F15ACF7A9007FD187 /* MOOMessageAlertContentView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9CE3B50715ACC61F00094B83 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9CE3B50815ACC61F00094B83 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9CE3B51615ACC61F00094B83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9CE3B51715ACC61F00094B83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9CE3B51915ACC61F00094B83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo Project/Demo Project-Prefix.pch";
+				INFOPLIST_FILE = "Demo Project/Demo Project-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9CE3B51A15ACC61F00094B83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo Project/Demo Project-Prefix.pch";
+				INFOPLIST_FILE = "Demo Project/Demo Project-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9CE3B4F415ACC61F00094B83 /* Build configuration list for PBXProject "Demo Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CE3B51615ACC61F00094B83 /* Debug */,
+				9CE3B51715ACC61F00094B83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CE3B51815ACC61F00094B83 /* Build configuration list for PBXNativeTarget "Alert View" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CE3B51915ACC61F00094B83 /* Debug */,
+				9CE3B51A15ACC61F00094B83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9CE3B4F115ACC61F00094B83 /* Project object */;
+}
