@@ -193,8 +193,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (BOOL)_shouldDismiss;
 {
-    if ([self.delegate respondsToSelector:@selector(shouldDismissAlertView:)])
-        return [self.delegate shouldDismissAlertView:self];
+    if ([self.delegate respondsToSelector:@selector(alertViewShouldDismiss:)])
+        return [self.delegate alertViewShouldDismiss:self];
     
     return YES;
 }
@@ -463,7 +463,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         
         MOOAlertViewDirection direction = (yVelocity < 0.0f) ? kMOOAlertViewDirectionUp : kMOOAlertViewDirectionDown;
         
-        if ((velocityThresholdReached || distanceThresholdReached) && (([self.delegate respondsToSelector:@selector(shouldDismissAlertView:)] && [self.delegate shouldDismissAlertView:self]) || ![self.delegate respondsToSelector:@selector(shouldDismissAlertView:)]))
+        if ((velocityThresholdReached || distanceThresholdReached) && [self _shouldDismiss])
         {
             // Dismiss alert view
             [self _willDismissAnimated:YES direction:direction];
@@ -531,8 +531,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)_willPresentAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
 {
-//    if ([self.delegate respondsToSelector:@selector(willPresentAlertDraggableView:animated:direction:)])
-//        [self.delegate willPresentAlertDraggableView:self animated:animated direction:direction];
+    if ([self.delegate respondsToSelector:@selector(alertViewWillPresent:animated:)])
+        [self.delegate alertViewWillPresent:self animated:animated];
     
     for (UIView *accessoryView in self.alertBox.accessoryViews)
     {
@@ -543,8 +543,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)_didPresentAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
 {
-//    if ([self.delegate respondsToSelector:@selector(didPresentAlertDraggableView:animated:direction:)])
-//        [self.delegate didPresentAlertDraggableView:self animated:animated direction:direction];
+    if ([self.delegate respondsToSelector:@selector(alertViewDidPresent:animated:)])
+        [self.delegate alertViewDidPresent:self animated:animated];
     
     [UIView animateWithDuration:self.accessoryViewFadeDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         for (UIView *accessoryView in self.alertBox.accessoryViews)
@@ -556,8 +556,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)_willDismissAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
 {
-//    if ([self.delegate respondsToSelector:@selector(willDismissAlertDraggableView:animated:direction:)])
-//        [self.delegate willDismissAlertDraggableView:self animated:animated direction:direction];
+    if ([self.delegate respondsToSelector:@selector(alertViewWillDismiss:animated:)])
+        [self.delegate alertViewWillDismiss:self animated:animated];
     
     [UIView animateWithDuration:self.accessoryViewFadeDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         for (UIView *accessoryView in self.alertBox.accessoryViews)
@@ -569,8 +569,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)_didDismissAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
 {
-//    if ([self.delegate respondsToSelector:@selector(didDismissAlertDraggableView:animated:direction:)])
-//        [self.delegate didDismissAlertDraggableView:self animated:animated direction:direction];
+    if ([self.delegate respondsToSelector:@selector(alertViewDidDismiss:animated:)])
+        [self.delegate alertViewDidDismiss:self animated:animated];
     
     for (UIView *accessoryView in self.alertBox.accessoryViews)
     {

@@ -76,11 +76,11 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 @protocol MOOAlertViewDelegate <NSObject>
 
 @optional
-- (void)willPresentAlertView:(MOOAlertView *)alertView animated:(BOOL)animated;
-- (void)didPresentAlertView:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (void)alertViewWillPresent:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (void)alertViewDidPresent:(MOOAlertView *)alertView animated:(BOOL)animated;
 
-- (BOOL)shouldDismissAlertView:(MOOAlertView *)alertView;
-- (void)willDismissAlertView:(MOOAlertView *)alertView animated:(BOOL)animated;
-- (void)didDismissAlertView:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (BOOL)alertViewShouldDismiss:(MOOAlertView *)alertView;
+- (void)alertViewWillDismiss:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (void)alertViewDidDismiss:(MOOAlertView *)alertView animated:(BOOL)animated;
 
 @end
