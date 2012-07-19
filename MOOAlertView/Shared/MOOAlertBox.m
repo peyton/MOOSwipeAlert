@@ -123,9 +123,12 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
 {
     UIEdgeInsets contentInsets = kMOOAlertBoxContentEdgeInsets;
     CGSize contentViewConstraint = size;
-    if (!CGSizeEqualToSize(contentViewConstraint, CGSizeZero));
-    contentViewConstraint.height -= contentInsets.top + contentInsets.bottom;
-    contentViewConstraint.width -= contentInsets.left + contentInsets.right;
+    if (!CGSizeEqualToSize(contentViewConstraint, CGSizeZero))
+    {
+        contentViewConstraint.height -= contentInsets.top + contentInsets.bottom;
+        contentViewConstraint.width -= contentInsets.left + contentInsets.right;
+    }
+    
     CGSize contentViewSize = [self.contentView sizeThatFits:contentViewConstraint];
     
     CGSize sizeThatFits = CGSizeMake(contentViewSize.width + contentInsets.left + contentInsets.right, contentViewSize.height + contentInsets.top + contentInsets.bottom);
