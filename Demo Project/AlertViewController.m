@@ -98,12 +98,12 @@
 
 #pragma mark - MOOAlertViewDelegate methods
 
-- (BOOL)shouldDismissAlertView:(MOOAlertView *)alertView;
+- (BOOL)alertViewShouldDismiss:(MOOAlertView *)alertView;
 {
     return alertView != _noDisappearAlertView;
 }
 
-- (void)didDismissAlertView:(MOOAlertView *)alertView;
+- (void)alertViewDidDismiss:(MOOAlertView *)alertView animated:(BOOL)animated;
 {
     if (alertView == _alertView)
         _alertView = nil;
