@@ -5,6 +5,8 @@
 //  Created by Peyton Randolph on 5/29/12.
 //
 
+#import "MOOAlertBox.h"
+
 @protocol MOOAlertViewDelegate;
 
 #ifdef NS_ENUM
