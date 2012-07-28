@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 {
     @private
     CGPoint _dragStartPosition;
+    CGRect _keyboardFrame;
     struct {
         BOOL dismissing: 1;
         BOOL preparedToShow: 1;

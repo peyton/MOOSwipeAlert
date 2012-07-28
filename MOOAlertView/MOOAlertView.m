@@ -117,6 +117,11 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     return self;
 }
 
+- (void)dealloc;
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Layout methods
 
 - (void)layoutSubviews;
@@ -142,7 +147,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         case kMOOAlertViewStateShowing:
         {
             // Move alert box to the center of the screen
-            self.alertBox.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+            self.alertBox.center = [self _centerForAlertBox:self.alertBox];
             self.alertBox.frame = CGRectIntegral(self.alertBox.frame);
             break;
         }
@@ -161,13 +166,21 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     return CGPointMake(CGRectGetMidX(alertBox.superview.bounds), CGRectGetHeight(alertBox.superview.bounds) + CGRectGetMidY([alertBox apparentBounds]));
 }
 
+- (CGPoint)_centerForAlertBox:(MOOAlertBox *)alertBox;
+{
+    CGRect slice;
+    CGRect remainder;
+    CGRectDivide(self.bounds, &slice, &remainder, CGRectGetHeight(_keyboardFrame), CGRectMaxYEdge);
+    return CGPointMake(CGRectGetMidX(remainder), CGRectGetMidY(remainder));
+}
+
 #pragma mark - Display methods
 
 - (void)show;
 {
     if (self.isVisible)
         return;
-    
+        
     // Add the alert view to the application's window
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     self.frame = keyWindow.bounds;
@@ -528,6 +541,32 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     view.center = locationInSuperview;
 }
 
+#pragma mark - Notification handling
+
+- (void)_handleKeyboardWillShowNotification:(NSNotification *)notification;
+{
+    _keyboardFrame = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    UIViewAnimationCurve animationCurve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+    NSTimeInterval animationDuration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:animationDuration delay:0.0 options:animationCurve << 16 animations:^{
+        self.alertBox.center = [self _centerForAlertBox:self.alertBox];
+        self.alertBox.frame = CGRectIntegral(self.alertBox.frame);
+    } completion:NULL];
+}
+
+- (void)_handleKeyboardWillHideNotification:(NSNotification *)notification;
+{
+    _keyboardFrame = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    UIViewAnimationCurve animationCurve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+    NSTimeInterval animationDuration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:animationDuration delay:0.0 options:animationCurve << 16 animations:^{
+        self.alertBox.center = [self _centerForAlertBox:self.alertBox];
+        self.alertBox.frame = CGRectIntegral(self.alertBox.frame);
+    } completion:NULL];
+}
+
 #pragma mark - Delegate passing
 
 - (void)_willPresentAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
@@ -540,6 +579,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         accessoryView.alpha = 0.0f;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleKeyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleKeyboardWillHideNotification:) name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)_didPresentAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
@@ -577,6 +618,10 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     {
         accessoryView.alpha = 0.0f;
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    _keyboardFrame = CGRectZero;
 }
 
 #pragma mark - Wobbling
