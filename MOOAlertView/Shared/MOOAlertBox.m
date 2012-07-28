@@ -188,7 +188,7 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
     for (UIView *accessoryView in self.accessoryViews)
     {
         UIView *targetView = [accessoryView hitTest:[accessoryView convertPoint:point fromView:self] withEvent:event];
-        if ([targetView isKindOfClass:[UIControl class]])
+        if ([targetView isKindOfClass:[UIControl class]] || [targetView isKindOfClass:[UITextField class]] || [targetView isKindOfClass:[UITextView class]])
             return targetView;
     }
     

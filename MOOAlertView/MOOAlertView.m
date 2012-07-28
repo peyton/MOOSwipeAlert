@@ -71,7 +71,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     
     // Configure view
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
+    self.exclusiveTouch = YES;
+    
     // Create background view
     self.backgroundView = [[UIView alloc] initWithFrame:frame];
     self.backgroundView.alpha = 0.0f;
@@ -613,7 +614,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
 {
     UIView *target = [gestureRecognizer.view hitTest:[touch locationInView:gestureRecognizer.view] withEvent:nil];
-    if ([target isKindOfClass:[UIControl class]])
+    if ([target isKindOfClass:[UIControl class]] || [target isKindOfClass:[UITextField class]] || [target isKindOfClass:[UITextView class]])
         return NO;
     
     return YES;
