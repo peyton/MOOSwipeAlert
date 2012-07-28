@@ -67,7 +67,7 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 @property (nonatomic, assign) CGFloat wobbleDistance;
 @property (nonatomic, assign) BOOL dismissOnAlertBoxTouch;
 @property (nonatomic, assign) BOOL dismissOnBackgroundTouch;
-@property (nonatomic, assign) BOOL showCloseButton;
+@property (nonatomic, assign) BOOL showsCloseButton;
 
 
 - (void)show;

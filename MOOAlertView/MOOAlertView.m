@@ -43,7 +43,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 @synthesize wobbleDistance = _wobbleDistance;
 @synthesize dismissOnAlertBoxTouch = _dismissOnAlertBoxTouch;
 @synthesize dismissOnBackgroundTouch = _dismissOnBackgroundTouch;
-@dynamic showCloseButton;
+@dynamic showsCloseButton;
 
 + (void)initialize;
 {
@@ -67,7 +67,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     self.wobbleDistance = 20.0f;
     self.dismissOnAlertBoxTouch = YES;
     self.dismissOnBackgroundTouch = YES;
-    self.showCloseButton = NO;
+    self.showsCloseButton = NO;
     
     // Configure view
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -84,7 +84,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     [self addSubview:self.alertBox];
     
     // Wire up alert box close button
-    self.alertBox.closeButton.hidden = self.showCloseButton;
+    self.alertBox.closeButton.hidden = self.showsCloseButton;
     [self.alertBox.closeButton addTarget:self action:@selector(_closeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     // Create alert box drag gesture recognizer
@@ -621,7 +621,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 #pragma mark - Getters and setters
 
-- (BOOL)showCloseButton;
+- (BOOL)showsCloseButton;
 {
     return !self.alertBox.closeButton.hidden;
 }
