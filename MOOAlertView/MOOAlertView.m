@@ -626,7 +626,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     return !self.alertBox.closeButton.hidden;
 }
 
-- (void)setShowCloseButton:(BOOL)showCloseButton;
+- (void)setShowsCloseButton:(BOOL)showCloseButton;
 {
     self.alertBox.closeButton.hidden = !showCloseButton;
 }
