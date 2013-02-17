@@ -26,6 +26,8 @@
 		9CE3B50F15ACC61F00094B83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3B50E15ACC61F00094B83 /* AppDelegate.m */; };
 		9CE3B51215ACC61F00094B83 /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE3B51115ACC61F00094B83 /* AlertViewController.m */; };
 		9CE3B54315ACE22F00094B83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B54215ACE22F00094B83 /* QuartzCore.framework */; };
+		9CF2D8B716CE853900800B3D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF2D8B616CE853900800B3D /* Default-568h@2x.png */; };
+		9CF2D8B916D1310700800B3D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2D8B816D1310700800B3D /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +48,7 @@
 		9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageAlertContentView.m; sourceTree = "<group>"; };
 		9C46B64C15AD09A1007FD187 /* Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alert.png; sourceTree = "<group>"; };
 		9C46B64D15AD09A1007FD187 /* Alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alert@2x.png"; sourceTree = "<group>"; };
-		9CE3B4FA15ACC61F00094B83 /* Demo Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Demo Project.app"; path = MOOAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CE3B4FA15ACC61F00094B83 /* Alert View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alert View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE3B4FE15ACC61F00094B83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9CE3B50015ACC61F00094B83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CE3B50215ACC61F00094B83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,6 +61,8 @@
 		9CE3B51015ACC61F00094B83 /* AlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
 		9CE3B51115ACC61F00094B83 /* AlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
 		9CE3B54215ACE22F00094B83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9CF2D8B616CE853900800B3D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		9CF2D8B816D1310700800B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF2D8B916D1310700800B3D /* AudioToolbox.framework in Frameworks */,
 				9CE3B54315ACE22F00094B83 /* QuartzCore.framework in Frameworks */,
 				9CE3B4FF15ACC61F00094B83 /* UIKit.framework in Frameworks */,
 				9CE3B50115ACC61F00094B83 /* Foundation.framework in Frameworks */,
@@ -117,7 +122,7 @@
 		9CE3B4FB15ACC61F00094B83 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9CE3B4FA15ACC61F00094B83 /* Demo Project.app */,
+				9CE3B4FA15ACC61F00094B83 /* Alert View.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 		9CE3B4FD15ACC61F00094B83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CF2D8B816D1310700800B3D /* AudioToolbox.framework */,
 				9CE3B54215ACE22F00094B83 /* QuartzCore.framework */,
 				9CE3B4FE15ACC61F00094B83 /* UIKit.framework */,
 				9CE3B50015ACC61F00094B83 /* Foundation.framework */,
@@ -150,6 +156,7 @@
 			children = (
 				9C46B64C15AD09A1007FD187 /* Alert.png */,
 				9C46B64D15AD09A1007FD187 /* Alert@2x.png */,
+				9CF2D8B616CE853900800B3D /* Default-568h@2x.png */,
 				9CE3B50615ACC61F00094B83 /* Demo Project-Info.plist */,
 				9C46B62615ACF78B007FD187 /* Icon.png */,
 				9C46B62815ACF792007FD187 /* Icon@2x.png */,
@@ -185,7 +192,7 @@
 			);
 			name = "Alert View";
 			productName = "Demo Project";
-			productReference = 9CE3B4FA15ACC61F00094B83 /* Demo Project.app */;
+			productReference = 9CE3B4FA15ACC61F00094B83 /* Alert View.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -225,6 +232,7 @@
 				9C46B63D15ACF7A9007FD187 /* MOOAlertView.bundle in Resources */,
 				9C46B64E15AD09A1007FD187 /* Alert.png in Resources */,
 				9C46B64F15AD09A1007FD187 /* Alert@2x.png in Resources */,
+				9CF2D8B716CE853900800B3D /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +320,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo Project/Demo Project-Prefix.pch";
 				INFOPLIST_FILE = "Demo Project/Demo Project-Info.plist";
+				OTHER_CFLAGS = "-DENABLE_VIBRATION";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -323,6 +332,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Demo Project/Demo Project-Prefix.pch";
 				INFOPLIST_FILE = "Demo Project/Demo Project-Info.plist";
+				OTHER_CFLAGS = "-DENABLE_VIBRATION";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -86,7 +86,7 @@
 - (void)_showButtonPressed4:(id)sender;
 {
     _alertView = [[MOOMessageAlertView alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
-    _alertView.showCloseButton = YES;
+    _alertView.showsCloseButton = YES;
     [_alertView show];
 }
 

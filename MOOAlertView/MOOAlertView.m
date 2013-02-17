@@ -7,6 +7,10 @@
 
 #import "MOOAlertView.h"
 
+#if defined(ENABLE_VIBRATION)
+    #import <AudioToolbox/AudioServices.h>
+#endif
+
 #import "CAAnimation+MOOAlertView.h"
 #import "MOOAlertBox.h"
 
@@ -43,6 +47,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 @synthesize wobbleDistance = _wobbleDistance;
 @synthesize dismissOnAlertBoxTouch = _dismissOnAlertBoxTouch;
 @synthesize dismissOnBackgroundTouch = _dismissOnBackgroundTouch;
+@synthesize vibrateOnFailedDismiss = _vibrateOnFailedDismiss;
 @dynamic showsCloseButton;
 
 + (void)initialize;
@@ -68,6 +73,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     self.dismissOnAlertBoxTouch = YES;
     self.dismissOnBackgroundTouch = YES;
     self.showsCloseButton = NO;
+    self.vibrateOnFailedDismiss = YES;
     
     // Configure view
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -78,6 +84,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     self.backgroundView.alpha = 0.0f;
     self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundView.backgroundColor = [UIColor blackColor];
+    self.backgroundView.exclusiveTouch = YES;
     [self addSubview:self.backgroundView];
     
     // Create alert box
@@ -242,7 +249,10 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if ([self _shouldDismiss])
         [self dismissAnimated:animated];
     else
+    {
+        if (self.vibrateOnFailedDismiss) [self _vibrate];
         [self _wobbleAlertBox:self.alertBox];
+    }
 }
 
 - (void)_prepareToShowFromDirection:(MOOAlertViewDirection)direction;
@@ -389,7 +399,10 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if ([self _shouldDismiss])
         [self _dismissInDirection:direction animated:YES];
     else
+    {
+        if (self.vibrateOnFailedDismiss) [self _vibrate];
         [self _wobbleAlertBox:self.alertBox];
+    }
 }
 
 - (CGPoint)_alertBox:(MOOAlertBox *)alertBox targetPointForVelocity:(CGFloat)velocity;
@@ -477,7 +490,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         
         MOOAlertViewDirection direction = (yVelocity < 0.0f) ? kMOOAlertViewDirectionUp : kMOOAlertViewDirectionDown;
         
-        if ((velocityThresholdReached || distanceThresholdReached) && [self _shouldDismiss])
+        BOOL shouldDismiss = NO;
+        if ((velocityThresholdReached || distanceThresholdReached) && (shouldDismiss = [self _shouldDismiss]))
         {
             // Dismiss alert view
             [self _willDismissAnimated:YES direction:direction];
@@ -485,6 +499,10 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
             [self _dismissWithVelocity:yVelocity];
         } else {
             // Snap back to beginning
+            
+            // First, vibrate if velocity or distance threshold reached, but delegate
+            // prevented dismissal
+            if (!shouldDismiss && self.vibrateOnFailedDismiss) [self _vibrate];
             
             // Set position to the start (otherwise the animation "pops back" to the current position)
             gesture.view.layer.position = _dragStartPosition;
@@ -624,7 +642,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     _keyboardFrame = CGRectZero;
 }
 
-#pragma mark - Wobbling
+#pragma mark - Failed dismiss
 
 - (void)_wobbleAlertBox:(UIView *)alertBox;
 {
@@ -634,12 +652,22 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     toPosition.y += self.wobbleDistance;
     
     // Disable user interaction during animation
-    self.userInteractionEnabled = NO;
+    // If we were just to do self.userInteractionEnabled = NO, touch events would
+    // fall through to views below. But disabling interaction on the entire window
+    // *might* be a bit heavy-handed
+    self.window.userInteractionEnabled = NO;
     
     CAAnimation *wobble = [CAAnimation wobbleAnimationFromPosition:fromPosition toPosition:toPosition duration:1.0f];
     wobble.delegate = self;
     wobble.removedOnCompletion = NO;
     [alertBox.layer addAnimation:wobble forKey:kMOOWobbleAnimationKey];
+}
+
+- (void)_vibrate;
+{
+#if defined(ENABLE_VIBRATION)
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+#endif
 }
 
 #pragma mark - CAAnimationDelegate methods
@@ -650,7 +678,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if (anim == [self.alertBox.layer animationForKey:(animKey = kMOORubberBandAnimationKey)] || anim == [self.alertBox.layer animationForKey:(animKey = kMOOWobbleAnimationKey)])
     {
         [self.alertBox.layer removeAnimationForKey:animKey];
-        self.userInteractionEnabled = YES;
+        self.window.userInteractionEnabled = YES;
     }
 }
 

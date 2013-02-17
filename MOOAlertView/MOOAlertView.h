@@ -9,33 +9,17 @@
 
 @protocol MOOAlertViewDelegate;
 
-#ifdef NS_ENUM
 typedef NS_ENUM(NSUInteger, MOOAlertViewState) {
-#else
-typedef enum {
-#endif
     kMOOAlertViewStateHiddenBelow,
     kMOOAlertViewStateHiddenAbove,
     kMOOAlertViewStateDragging,
     kMOOAlertViewStateShowing
-#ifdef NS_ENUM
 };
-#else
-} MOOAlertViewState;
-#endif
 
-#ifdef NS_ENUM
 typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
-#else
-    typedef enum {
-#endif
     kMOOAlertViewDirectionDown,
     kMOOAlertViewDirectionUp
-#ifdef NS_ENUM
-    };
-#else
-} MOOAlertViewDirection;
-#endif
+};
 
 @class MOOAlertBox;
 
@@ -58,17 +42,6 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 
 @property (nonatomic, strong, readonly) MOOAlertBox *alertBox;
 @property (nonatomic, strong, readonly) UIView *backgroundView;
-
-@property (nonatomic, assign) CGFloat backgroundViewAlpha;
-@property (nonatomic, assign) NSTimeInterval showDuration;
-@property (nonatomic, assign) NSTimeInterval dismissDuration;
-@property (nonatomic, assign) NSTimeInterval accessoryViewFadeDuration;
-@property (nonatomic, assign) CGFloat dismissDistanceThreshold;
-@property (nonatomic, assign) CGFloat dismissVelocityThreshold;
-@property (nonatomic, assign) CGFloat wobbleDistance;
-@property (nonatomic, assign) BOOL dismissOnAlertBoxTouch;
-@property (nonatomic, assign) BOOL dismissOnBackgroundTouch;
-@property (nonatomic, assign) BOOL showsCloseButton;
 
 
 - (void)show;
