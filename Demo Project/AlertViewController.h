@@ -12,6 +12,7 @@
 {
     MOOMessageAlertView *_alertView;
     MOOMessageAlertView *_noDisappearAlertView;
+    UIButton *_dismissButton;
 }
 
 @end

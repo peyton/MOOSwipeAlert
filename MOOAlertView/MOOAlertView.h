@@ -7,8 +7,11 @@
 
 #import "MOOAlertBox.h"
 
+// Forward declarations
+@class MOOAlertBox;
 @protocol MOOAlertViewDelegate;
 
+// Constants
 typedef NS_ENUM(NSUInteger, MOOAlertViewState) {
     kMOOAlertViewStateHiddenBelow,
     kMOOAlertViewStateHiddenAbove,
@@ -21,9 +24,27 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
     kMOOAlertViewDirectionUp
 };
 
-@class MOOAlertBox;
 
-@interface MOOAlertView : UIView
+// Protocol for storing options
+@protocol MOOSwipeAlertOptions <NSObject>
+
+@property (nonatomic, assign) CGFloat backgroundViewAlpha;
+@property (nonatomic, assign) NSTimeInterval showDuration;
+@property (nonatomic, assign) NSTimeInterval dismissDuration;
+@property (nonatomic, assign) NSTimeInterval accessoryViewFadeDuration;
+@property (nonatomic, assign) CGFloat dismissDistanceThreshold;
+@property (nonatomic, assign) CGFloat dismissVelocityThreshold;
+@property (nonatomic, assign) CGFloat wobbleDistance;
+@property (nonatomic, assign) BOOL dismissOnAlertBoxTouch;
+@property (nonatomic, assign) BOOL dismissOnBackgroundTouch;
+@property (nonatomic, assign) BOOL vibrateOnFailedDismiss;
+@property (nonatomic, assign) BOOL showsCloseButton;
+
+@end
+@interface MOOSwipeAlertOptions : NSObject <MOOSwipeAlertOptions>
+@end
+
+@interface MOOAlertView : UIView <MOOSwipeAlertOptions>
 {
     @private
     CGPoint _dragStartPosition;
@@ -43,9 +64,11 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 @property (nonatomic, strong, readonly) MOOAlertBox *alertBox;
 @property (nonatomic, strong, readonly) UIView *backgroundView;
 
-
 - (void)show;
 - (void)dismissAnimated:(BOOL)animated;
+
+- (void)configureWithOptions:(id<MOOSwipeAlertOptions>)options;
++ (id<MOOSwipeAlertOptions>)sharedDefaults;
 
 @end
 

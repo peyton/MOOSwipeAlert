@@ -10,12 +10,17 @@
 #if defined(ENABLE_VIBRATION)
     #import <AudioToolbox/AudioServices.h>
 #endif
+#import <objc/runtime.h>
 
 #import "CAAnimation+MOOAlertView.h"
 #import "MOOAlertBox.h"
 
 static NSString * const kMOORubberBandAnimationKey = @"kMOORubberBandAnimationKey";
 static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
+
+@implementation MOOSwipeAlertOptions
+@synthesize backgroundViewAlpha, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showsCloseButton;
+@end
 
 @interface MOOAlertView ()
 
@@ -55,6 +60,18 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if (self != [MOOAlertView class])
         return;
     
+    // Initialize shared defaults
+    MOOSwipeAlertOptions *defaults = [self sharedDefaults];
+    defaults.backgroundViewAlpha = 0.7f;
+    defaults.showDuration = defaults.dismissDuration = defaults.accessoryViewFadeDuration = 0.3;
+    defaults.dismissDistanceThreshold = 75.0f;
+    defaults.dismissVelocityThreshold = 350.0f;
+    defaults.wobbleDistance = 20.0f;
+    defaults.dismissOnAlertBoxTouch = YES;
+    defaults.dismissOnBackgroundTouch = YES;
+    defaults.showsCloseButton = NO;
+    defaults.vibrateOnFailedDismiss = YES;
+    
     // Load MOOAlertView bundle
     [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"MOOAlertView" ofType:@"bundle"]] load];
 }
@@ -64,16 +81,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    // Set defaults
-    self.backgroundViewAlpha = 0.7f;
-    self.showDuration = self.dismissDuration = self.accessoryViewFadeDuration = 0.3;
-    self.dismissDistanceThreshold = 75.0f;
-    self.dismissVelocityThreshold = 350.0f;
-    self.wobbleDistance = 20.0f;
-    self.dismissOnAlertBoxTouch = YES;
-    self.dismissOnBackgroundTouch = YES;
-    self.showsCloseButton = NO;
-    self.vibrateOnFailedDismiss = YES;
+    // Initialize options
+    [self configureWithOptions:[[self class] sharedDefaults]];
     
     // Configure view
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -642,7 +651,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     _keyboardFrame = CGRectZero;
 }
 
-#pragma mark - Failed dismiss
+#pragma mark - Failed dismiss methods
 
 - (void)_wobbleAlertBox:(UIView *)alertBox;
 {
@@ -693,6 +702,26 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     return YES;
 }
 
+#pragma mark - Configuration methods
+
+- (void)configureWithOptions:(id<MOOSwipeAlertOptions>)options;
+{
+    // Grab the set of property names from the MOOSwipeAlertOptions protocol
+    unsigned int outCount;
+    objc_property_t *properties = protocol_copyPropertyList(@protocol(MOOSwipeAlertOptions), &outCount);
+    NSMutableSet *propertyNames = [NSMutableSet setWithCapacity:outCount];
+    for (unsigned int i = 0; i < outCount; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
+        [propertyNames addObject:propertyName];
+    }
+    
+    // Copy each property from the options object
+    for (NSString *propertyName in propertyNames)
+        [self setValue:[(NSObject *)options valueForKey:propertyName] forKey:propertyName];
+}
+
 #pragma mark - Getters and setters
 
 - (BOOL)showsCloseButton;
@@ -703,6 +732,16 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 - (void)setShowsCloseButton:(BOOL)showCloseButton;
 {
     self.alertBox.closeButton.hidden = !showCloseButton;
+}
+
++ (id<MOOSwipeAlertOptions>)sharedDefaults;
+{
+    static MOOSwipeAlertOptions *sharedDefaults = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        sharedDefaults = [[MOOSwipeAlertOptions alloc] init];
+    });
+    return sharedDefaults;
 }
 
 - (BOOL)isVisible;

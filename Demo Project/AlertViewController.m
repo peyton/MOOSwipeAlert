@@ -56,6 +56,12 @@
         
         ++index;
     }
+    
+    
+    _dismissButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_dismissButton addTarget:self action:@selector(_dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
+    [_dismissButton sizeToFit];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -94,6 +100,13 @@
 {
     _noDisappearAlertView = [[MOOMessageAlertView alloc] initWithTitle:@"Test alert" message:@"You will never dismiss me!!!" delegate:self];
     [_noDisappearAlertView show];
+    [_noDisappearAlertView addSubview:_dismissButton];
+}
+
+- (void)_dismissButtonPressed:(id)sender;
+{
+    [_dismissButton removeFromSuperview];
+    [_noDisappearAlertView dismissAnimated:YES];
 }
 
 #pragma mark - MOOAlertViewDelegate methods
