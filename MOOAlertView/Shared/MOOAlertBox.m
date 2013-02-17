@@ -1,13 +1,13 @@
 //
 //  MOOAlertBox.m
-//  MOOAlertView
+//  MOOSwipeAlert
 //
 //  Created by Peyton Randolph on 6/13/12.
 //
 
 #import "MOOAlertBox.h"
 
-#import "MOOAlertViewConstants.h"
+#import "MOOSwipeAlertConstants.h"
 
 #define kMOOAlertBoxContentEdgeInsets UIEdgeInsetsMake(3.0f, 0.0f, 7.0f, 0.0f)
 #define kMOOAlertBoxCornerRadius 4.0f
@@ -43,7 +43,7 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     // Create overlay view
-    NSString *overlayImagePath = [[NSBundle bundleWithIdentifier:kMOOAlertViewBundleIdentifier] pathForResource:@"Overlay" ofType:@"png"];
+    NSString *overlayImagePath = [[NSBundle bundleWithIdentifier:kMOOSwipeAlertBundleIdentifier] pathForResource:@"Overlay" ofType:@"png"];
     UIImage *overlayImage = [UIImage imageWithContentsOfFile:overlayImagePath];
     UIImage *stretchableOverlayImage;
     if ([overlayImage respondsToSelector:@selector(resizableImageWithCapInsets:)])
@@ -57,9 +57,9 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.closeButton.adjustsImageWhenDisabled = NO;
     self.closeButton.adjustsImageWhenHighlighted = NO;
-    [self.closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle bundleWithIdentifier:kMOOAlertViewBundleIdentifier] pathForResource:@"Close-Button" ofType:@"png"]] forState:UIControlStateNormal];
-    [self.closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle bundleWithIdentifier:kMOOAlertViewBundleIdentifier] pathForResource:@"Close-Button-Highlighted" ofType:@"png"]] forState:UIControlStateHighlighted];
-    [self.closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle bundleWithIdentifier:kMOOAlertViewBundleIdentifier] pathForResource:@"Close-Button-Disabled" ofType:@"png"]] forState:UIControlStateDisabled];
+    [self.closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle bundleWithIdentifier:kMOOSwipeAlertBundleIdentifier] pathForResource:@"Close-Button" ofType:@"png"]] forState:UIControlStateNormal];
+    [self.closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle bundleWithIdentifier:kMOOSwipeAlertBundleIdentifier] pathForResource:@"Close-Button-Highlighted" ofType:@"png"]] forState:UIControlStateHighlighted];
+    [self.closeButton setBackgroundImage:[UIImage imageWithContentsOfFile:[[NSBundle bundleWithIdentifier:kMOOSwipeAlertBundleIdentifier] pathForResource:@"Close-Button-Disabled" ofType:@"png"]] forState:UIControlStateDisabled];
     [self addSubview:self.closeButton];
     
     // Watch for accessory view changes

@@ -7,13 +7,13 @@
 
 #import "AlertViewController.h"
 
-#import "MOOMessageAlertView.h"
+#import "MOOMessageSwipeAlert.h"
 
 @interface AlertViewController ()
 
 @end
 
-@interface AlertViewController (MOOAlertViewDelegate) <MOOAlertViewDelegate>
+@interface AlertViewController (MOOSwipeAlertDelegate) <MOOSwipeAlertDelegate>
 
 @end
 
@@ -74,32 +74,32 @@
 
 - (void)_showButtonPressed1:(id)sender;
 {
-    _alertView = [[MOOMessageAlertView alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
+    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
     [_alertView show];
 }
 
 - (void)_showButtonPressed2:(id)sender;
 {
-    _alertView = [[MOOMessageAlertView alloc] initWithTitle:nil message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
+    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:nil message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
     [_alertView show];
 }
 
 - (void)_showButtonPressed3:(id)sender;
 {
-    _alertView = [[MOOMessageAlertView alloc] initWithTitle:@"Test alert" message:nil delegate:self];
+    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:nil delegate:self];
     [_alertView show];
 }
 
 - (void)_showButtonPressed4:(id)sender;
 {
-    _alertView = [[MOOMessageAlertView alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
+    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
     _alertView.showsCloseButton = YES;
     [_alertView show];
 }
 
 - (void)_showButtonPressed5:(id)sender;
 {
-    _noDisappearAlertView = [[MOOMessageAlertView alloc] initWithTitle:@"Test alert" message:@"You will never dismiss me!!!" delegate:self];
+    _noDisappearAlertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"You will never dismiss me!!!" delegate:self];
     [_noDisappearAlertView show];
     [_noDisappearAlertView addSubview:_dismissButton];
 }
@@ -110,14 +110,14 @@
     [_noDisappearAlertView dismissAnimated:YES];
 }
 
-#pragma mark - MOOAlertViewDelegate methods
+#pragma mark - MOOSwipeAlertDelegate methods
 
-- (BOOL)alertViewShouldDismiss:(MOOAlertView *)alertView;
+- (BOOL)alertViewShouldDismiss:(MOOSwipeAlert *)alertView;
 {
     return alertView != _noDisappearAlertView;
 }
 
-- (void)alertViewDidDismiss:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (void)alertViewDidDismiss:(MOOSwipeAlert *)alertView animated:(BOOL)animated;
 {
     if (alertView == _alertView)
         _alertView = nil;

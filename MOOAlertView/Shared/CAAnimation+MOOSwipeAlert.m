@@ -1,15 +1,15 @@
 //
-//  CAAnimation+MOOAlertView.m
-//  MOOAlertView
+//  CAAnimation+MOOSwipeAlertView.m
+//  MOOSwipeAlert
 //
 //  Created by Peyton Randolph on 7/10/12.
 //
 
-#import "CAAnimation+MOOAlertView.h"
+#import "CAAnimation+MOOSwipeAlert.h"
 
 static CGPoint interpolatePointsScaled(CGPoint fromPoint, CGPoint toPoint, CGFloat scale);
 
-@implementation CAAnimation (MOOAlertView)
+@implementation CAAnimation (MOOSwipeAlert)
 
 + (CAAnimation *)rubberBandAnimationFromPosition:(CGPoint)fromPosition toPosition:(CGPoint)toPosition duration:(CFTimeInterval)duration;
 {

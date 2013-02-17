@@ -1,6 +1,6 @@
 //
 //  MOOMessageAlertContentView.h
-//  MOOAlertView
+//  MOOSwipeAlert
 //
 //  Created by Peyton Randolph on 6/13/12.
 //

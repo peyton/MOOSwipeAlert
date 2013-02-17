@@ -1,18 +1,18 @@
 //
-//  MOOAlertView.m
-//  MOOAlertView
+//  MOOSwipeAlert.m
+//  MOOSwipeAlert
 //
 //  Created by Peyton Randolph on 5/29/12.
 //
 
-#import "MOOAlertView.h"
+#import "MOOSwipeAlert.h"
 
 #if defined(ENABLE_VIBRATION)
     #import <AudioToolbox/AudioServices.h>
 #endif
 #import <objc/runtime.h>
 
-#import "CAAnimation+MOOAlertView.h"
+#import "CAAnimation+MOOSwipeAlert.h"
 #import "MOOAlertBox.h"
 
 static NSString * const kMOORubberBandAnimationKey = @"kMOORubberBandAnimationKey";
@@ -22,19 +22,19 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 @synthesize backgroundViewAlpha, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showsCloseButton;
 @end
 
-@interface MOOAlertView ()
+@interface MOOSwipeAlert ()
 
-@property (nonatomic, assign) MOOAlertViewState state;
+@property (nonatomic, assign) MOOSwipeAlertState state;
 
 @property (nonatomic, strong) MOOAlertBox *alertBox;
 @property (nonatomic, strong) UIView *backgroundView;
 
 @end
 
-@interface MOOAlertView (UIGestureRecognizerDelegate) <UIGestureRecognizerDelegate>
+@interface MOOSwipeAlert (UIGestureRecognizerDelegate) <UIGestureRecognizerDelegate>
 @end
 
-@implementation MOOAlertView
+@implementation MOOSwipeAlert
 @synthesize delegate = _delegate;
 
 @synthesize state = _state;
@@ -57,7 +57,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 + (void)initialize;
 {
-    if (self != [MOOAlertView class])
+    if (self != [MOOSwipeAlert class])
         return;
     
     // Initialize shared defaults
@@ -72,8 +72,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     defaults.showsCloseButton = NO;
     defaults.vibrateOnFailedDismiss = YES;
     
-    // Load MOOAlertView bundle
-    [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"MOOAlertView" ofType:@"bundle"]] load];
+    // Load themes bundle
+    [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"Default" ofType:@"MOOSwipeAlertTheme.bundle"]] load];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -150,24 +150,24 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     // Position alert box
     [self.alertBox sizeToFit];
     switch (self.state) {
-        case kMOOAlertViewStateHiddenAbove:
+        case kMOOSwipeAlertStateHiddenAbove:
             // Move alert box off the top of the screen
             self.alertBox.center = [self _aboveCenterForAlertBox:self.alertBox];
             break;
-        case kMOOAlertViewStateHiddenBelow:
+        case kMOOSwipeAlertStateHiddenBelow:
         {
             // Move alert box off the bottom of the screen
             self.alertBox.center = [self _belowCenterForAlertBox:self.alertBox];
             break;
         }
-        case kMOOAlertViewStateShowing:
+        case kMOOSwipeAlertStateShowing:
         {
             // Move alert box to the center of the screen
             self.alertBox.center = [self _centerForAlertBox:self.alertBox];
             self.alertBox.frame = CGRectIntegral(self.alertBox.frame);
             break;
         }
-        case kMOOAlertViewStateDragging:
+        case kMOOSwipeAlertStateDragging:
             break;
     }
 }
@@ -202,7 +202,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     self.frame = keyWindow.bounds;
     [keyWindow addSubview:self];
 
-    [self _showFromDirection:kMOOAlertViewDirectionDown animated:YES];
+    [self _showFromDirection:kMOOSwipeAlertDirectionDown animated:YES];
     
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     // Do show animation
@@ -218,7 +218,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if (!self.isVisible)
         return;
     
-    [self _dismissInDirection:kMOOAlertViewDirectionUp animated:YES];
+    [self _dismissInDirection:kMOOSwipeAlertDirectionUp animated:YES];
 }
 
 - (BOOL)_shouldDismiss;
@@ -264,15 +264,15 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     }
 }
 
-- (void)_prepareToShowFromDirection:(MOOAlertViewDirection)direction;
+- (void)_prepareToShowFromDirection:(MOOSwipeAlertDirection)direction;
 {
     switch (direction)
     {
-        case kMOOAlertViewDirectionDown:
-            self.state = kMOOAlertViewStateHiddenBelow;
+        case kMOOSwipeAlertDirectionDown:
+            self.state = kMOOSwipeAlertStateHiddenBelow;
             break;
-        case kMOOAlertViewDirectionUp:
-            self.state = kMOOAlertViewStateHiddenAbove;
+        case kMOOSwipeAlertDirectionUp:
+            self.state = kMOOSwipeAlertStateHiddenAbove;
             break;
     }
     
@@ -294,14 +294,14 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         return;
     }
     _alertViewFlags.preparedToShow = NO;
-    self.state = kMOOAlertViewStateShowing;
+    self.state = kMOOSwipeAlertStateShowing;
     
     // Perform layout
     [self setNeedsLayout];
     [self layoutIfNeeded];
 }
 
-- (void)_showFromDirection:(MOOAlertViewDirection)direction animated:(BOOL)animated;
+- (void)_showFromDirection:(MOOSwipeAlertDirection)direction animated:(BOOL)animated;
 {
     if (self.isVisible)
         return;
@@ -332,15 +332,15 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     _alertViewFlags.preparedToDismiss = YES;
 }
 
-- (void)_performDismissInDirection:(MOOAlertViewDirection)direction;
+- (void)_performDismissInDirection:(MOOSwipeAlertDirection)direction;
 {
     switch (direction)
     {
-        case kMOOAlertViewDirectionDown:
-            self.state = kMOOAlertViewStateHiddenBelow;
+        case kMOOSwipeAlertDirectionDown:
+            self.state = kMOOSwipeAlertStateHiddenBelow;
             break;
-        case kMOOAlertViewDirectionUp:
-            self.state = kMOOAlertViewStateHiddenAbove;
+        case kMOOSwipeAlertDirectionUp:
+            self.state = kMOOSwipeAlertStateHiddenAbove;
             break;
     }
     
@@ -350,7 +350,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     _alertViewFlags.preparedToDismiss = NO;
 }
 
-- (void)_dismissInDirection:(MOOAlertViewDirection)direction animated:(BOOL)animated;
+- (void)_dismissInDirection:(MOOSwipeAlertDirection)direction animated:(BOOL)animated;
 {
     if (!self.isVisible)
         return;
@@ -365,10 +365,10 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         
         switch (direction)
         {
-            case kMOOAlertViewDirectionDown:
+            case kMOOSwipeAlertDirectionDown:
                 targetPoint = [self _belowCenterForAlertBox:self.alertBox];
                 break;
-            case kMOOAlertViewDirectionUp:
+            case kMOOSwipeAlertDirectionUp:
                 targetPoint = [self _aboveCenterForAlertBox:self.alertBox];
                 break;
         }
@@ -391,7 +391,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         return;
     
     CGPoint targetPoint = [self _alertBox:self.alertBox targetPointForVelocity:velocity];
-    MOOAlertViewDirection direction = (velocity < 0.0f) ? kMOOAlertViewDirectionUp : kMOOAlertViewDirectionDown;
+    MOOSwipeAlertDirection direction = (velocity < 0.0f) ? kMOOSwipeAlertDirectionUp : kMOOSwipeAlertDirectionDown;
     
     NSTimeInterval dismissalDuration = (fabsf(velocity) > FLT_EPSILON) ? fabs((self.alertBox.center.y - targetPoint.y) / velocity) : self.dismissDuration;
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -404,7 +404,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     }];
 }
 
-- (void)_dismissIfAbleInDirection:(MOOAlertViewDirection)direction animated:(BOOL)animated;
+- (void)_dismissIfAbleInDirection:(MOOSwipeAlertDirection)direction animated:(BOOL)animated;
 {
     if ([self _shouldDismiss])
         [self _dismissInDirection:direction animated:YES];
@@ -459,7 +459,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 {
     if (gesture.state == UIGestureRecognizerStateBegan)
     {
-        self.state = kMOOAlertViewStateDragging;
+        self.state = kMOOSwipeAlertStateDragging;
         
         // Store layer position before adjusting anchor point
         gesture.view.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
@@ -478,7 +478,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     
     else if (gesture.state == UIGestureRecognizerStateEnded || gesture.state == UIGestureRecognizerStateCancelled)
     {
-        self.state = kMOOAlertViewStateShowing;
+        self.state = kMOOSwipeAlertStateShowing;
         
         // Grab the y velocity
         CGFloat yVelocity = [gesture velocityInView:gesture.view].y;
@@ -498,7 +498,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         if (!velocityThresholdReached)
             yVelocity = distanceFromStart / self.dismissDuration;
         
-        MOOAlertViewDirection direction = (yVelocity < 0.0f) ? kMOOAlertViewDirectionUp : kMOOAlertViewDirectionDown;
+        MOOSwipeAlertDirection direction = (yVelocity < 0.0f) ? kMOOSwipeAlertDirectionUp : kMOOSwipeAlertDirectionDown;
         
         BOOL shouldDismiss = NO;
         if ((velocityThresholdReached || distanceThresholdReached) && (shouldDismiss = [self _shouldDismiss]))
@@ -537,7 +537,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if ((gesture.view == self.alertBox && !self.dismissOnAlertBoxTouch) || (gesture.view == self.backgroundView && !self.dismissOnBackgroundTouch))
         return;
     
-    [self _dismissIfAbleInDirection:kMOOAlertViewDirectionUp animated:YES];
+    [self _dismissIfAbleInDirection:kMOOSwipeAlertDirectionUp animated:YES];
 }
 
 - (void)_handleSwipe:(UISwipeGestureRecognizer *)gesture;
@@ -548,10 +548,10 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     switch (gesture.direction)
     {
         case UISwipeGestureRecognizerDirectionUp:
-            [self _dismissIfAbleInDirection:kMOOAlertViewDirectionUp animated:YES];
+            [self _dismissIfAbleInDirection:kMOOSwipeAlertDirectionUp animated:YES];
             break;
         case UISwipeGestureRecognizerDirectionDown:
-            [self _dismissIfAbleInDirection:kMOOAlertViewDirectionDown animated:YES];
+            [self _dismissIfAbleInDirection:kMOOSwipeAlertDirectionDown animated:YES];
             break;
         default:
             break;
@@ -597,7 +597,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 #pragma mark - Delegate passing
 
-- (void)_willPresentAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
+- (void)_willPresentAnimated:(BOOL)animated direction:(MOOSwipeAlertDirection)direction;
 {
     if ([self.delegate respondsToSelector:@selector(alertViewWillPresent:animated:)])
         [self.delegate alertViewWillPresent:self animated:animated];
@@ -611,7 +611,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleKeyboardWillHideNotification:) name:UIKeyboardWillShowNotification object:nil];
 }
 
-- (void)_didPresentAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
+- (void)_didPresentAnimated:(BOOL)animated direction:(MOOSwipeAlertDirection)direction;
 {
     if ([self.delegate respondsToSelector:@selector(alertViewDidPresent:animated:)])
         [self.delegate alertViewDidPresent:self animated:animated];
@@ -624,7 +624,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     } completion:NULL];
 }
 
-- (void)_willDismissAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
+- (void)_willDismissAnimated:(BOOL)animated direction:(MOOSwipeAlertDirection)direction;
 {
     if ([self.delegate respondsToSelector:@selector(alertViewWillDismiss:animated:)])
         [self.delegate alertViewWillDismiss:self animated:animated];
@@ -637,7 +637,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     } completion:NULL];
 }
 
-- (void)_didDismissAnimated:(BOOL)animated direction:(MOOAlertViewDirection)direction;
+- (void)_didDismissAnimated:(BOOL)animated direction:(MOOSwipeAlertDirection)direction;
 {
     if ([self.delegate respondsToSelector:@selector(alertViewDidDismiss:animated:)])
         [self.delegate alertViewDidDismiss:self animated:animated];
@@ -747,7 +747,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (BOOL)isVisible;
 {
-    return self.superview != nil && (self.state == kMOOAlertViewStateDragging || self.state == kMOOAlertViewStateShowing);
+    return self.superview != nil && (self.state == kMOOSwipeAlertStateDragging || self.state == kMOOSwipeAlertStateShowing);
 }
 
 @end

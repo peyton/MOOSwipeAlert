@@ -1,6 +1,6 @@
 //
-//  MOOAlertView.h
-//  MOOAlertView
+//  MOOSwipeAlert.h
+//  MOOSwipeAlert
 //
 //  Created by Peyton Randolph on 5/29/12.
 //
@@ -9,19 +9,19 @@
 
 // Forward declarations
 @class MOOAlertBox;
-@protocol MOOAlertViewDelegate;
+@protocol MOOSwipeAlertDelegate;
 
 // Constants
-typedef NS_ENUM(NSUInteger, MOOAlertViewState) {
-    kMOOAlertViewStateHiddenBelow,
-    kMOOAlertViewStateHiddenAbove,
-    kMOOAlertViewStateDragging,
-    kMOOAlertViewStateShowing
+typedef NS_ENUM(NSUInteger, MOOSwipeAlertState) {
+    kMOOSwipeAlertStateHiddenBelow,
+    kMOOSwipeAlertStateHiddenAbove,
+    kMOOSwipeAlertStateDragging,
+    kMOOSwipeAlertStateShowing
 };
 
-typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
-    kMOOAlertViewDirectionDown,
-    kMOOAlertViewDirectionUp
+typedef NS_ENUM(NSUInteger, MOOSwipeAlertDirection) {
+    kMOOSwipeAlertDirectionDown,
+    kMOOSwipeAlertDirectionUp
 };
 
 
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 @interface MOOSwipeAlertOptions : NSObject <MOOSwipeAlertOptions>
 @end
 
-@interface MOOAlertView : UIView <MOOSwipeAlertOptions>
+@interface MOOSwipeAlert : UIView <MOOSwipeAlertOptions>
 {
     @private
     CGPoint _dragStartPosition;
@@ -56,9 +56,9 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
     } _alertViewFlags;
 }
 
-@property (nonatomic, unsafe_unretained) id<MOOAlertViewDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<MOOSwipeAlertDelegate> delegate;
 
-@property (nonatomic, assign, readonly) MOOAlertViewState state;
+@property (nonatomic, assign, readonly) MOOSwipeAlertState state;
 @property (nonatomic, assign, readonly, getter=isVisible) BOOL visible;
 
 @property (nonatomic, strong, readonly) MOOAlertBox *alertBox;
@@ -72,14 +72,14 @@ typedef NS_ENUM(NSUInteger, MOOAlertViewDirection) {
 
 @end
 
-@protocol MOOAlertViewDelegate <NSObject>
+@protocol MOOSwipeAlertDelegate <NSObject>
 
 @optional
-- (void)alertViewWillPresent:(MOOAlertView *)alertView animated:(BOOL)animated;
-- (void)alertViewDidPresent:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (void)alertViewWillPresent:(MOOSwipeAlert *)alertView animated:(BOOL)animated;
+- (void)alertViewDidPresent:(MOOSwipeAlert *)alertView animated:(BOOL)animated;
 
-- (BOOL)alertViewShouldDismiss:(MOOAlertView *)alertView;
-- (void)alertViewWillDismiss:(MOOAlertView *)alertView animated:(BOOL)animated;
-- (void)alertViewDidDismiss:(MOOAlertView *)alertView animated:(BOOL)animated;
+- (BOOL)alertViewShouldDismiss:(MOOSwipeAlert *)alertView;
+- (void)alertViewWillDismiss:(MOOSwipeAlert *)alertView animated:(BOOL)animated;
+- (void)alertViewDidDismiss:(MOOSwipeAlert *)alertView animated:(BOOL)animated;
 
 @end

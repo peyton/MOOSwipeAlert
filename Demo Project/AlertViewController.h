@@ -6,12 +6,12 @@
 //
 
 
-@class MOOMessageAlertView;
+@class MOOMessageSwipeAlert;
 
 @interface AlertViewController : UIViewController
 {
-    MOOMessageAlertView *_alertView;
-    MOOMessageAlertView *_noDisappearAlertView;
+    MOOMessageSwipeAlert *_alertView;
+    MOOMessageSwipeAlert *_noDisappearAlertView;
     UIButton *_dismissButton;
 }
 

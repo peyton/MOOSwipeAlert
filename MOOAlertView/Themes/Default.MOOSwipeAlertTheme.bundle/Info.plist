@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.peytn.MOOAlertView.resources</string>
+	<string>com.peytn.MOOSwipeAlert.Themes.Default</string>
 </dict>
 </plist>

@@ -1,20 +1,20 @@
 //
-//  MOOMessageAlertView.m
-//  MOOAlertView
+//  MOOMessageSwipeAlert.m
+//  MOOSwipeAlert
 //
 //  Created by Peyton Randolph on 6/13/12.
 //
 
-#import "MOOMessageAlertView.h"
+#import "MOOMessageSwipeAlert.h"
 
 #import "MOOAlertBox.h"
 #import "MOOMessageAlertContentView.h"
 
-@interface MOOMessageAlertView ()
+@interface MOOMessageSwipeAlert ()
 
 @end
 
-@implementation MOOMessageAlertView
+@implementation MOOMessageSwipeAlert
 @dynamic title;
 @dynamic message;
 
@@ -29,7 +29,7 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id<MOOAlertViewDelegate>)delegate;
+- (id)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id<MOOSwipeAlertDelegate>)delegate;
 {
     if (!(self = [self initWithFrame:CGRectZero]))
         return nil;
