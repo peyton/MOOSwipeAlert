@@ -23,5 +23,7 @@
 @property (nonatomic, strong, readonly) NSArray *accessoryViews;
 
 - (CGRect)apparentBounds;
+- (CGFloat)topOverflowY;
+- (CGFloat)bottomOverflowY;
 
 @end

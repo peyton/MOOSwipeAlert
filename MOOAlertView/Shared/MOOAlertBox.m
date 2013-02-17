@@ -140,9 +140,18 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
     CGRect bounds = self.bounds;
     for (UIView *subview in self.subviews)
         bounds = CGRectUnion(subview.frame, bounds);
-    bounds.origin = CGPointZero;
     
     return bounds;
+}
+
+- (CGFloat)topOverflowY;
+{
+    return -1.0f * [self apparentBounds].origin.y;
+}
+
+- (CGFloat)bottomOverflowY;
+{
+    return CGRectGetMaxY([self apparentBounds]) - CGRectGetHeight(self.bounds);
 }
 
 #pragma mark - Getters and setters

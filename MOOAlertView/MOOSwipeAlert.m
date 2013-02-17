@@ -174,12 +174,12 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (CGPoint)_aboveCenterForAlertBox:(MOOAlertBox *)alertBox;
 {
-    return CGPointMake(CGRectGetMidX(alertBox.superview.bounds), -CGRectGetMidY([alertBox apparentBounds]));
+    return CGPointMake(CGRectGetMidX(alertBox.superview.bounds), -CGRectGetMidY(alertBox.bounds) - [alertBox bottomOverflowY]);
 }
 
 - (CGPoint)_belowCenterForAlertBox:(MOOAlertBox *)alertBox;
 {
-    return CGPointMake(CGRectGetMidX(alertBox.superview.bounds), CGRectGetHeight(alertBox.superview.bounds) + CGRectGetMidY([alertBox apparentBounds]));
+    return CGPointMake(CGRectGetMidX(alertBox.superview.bounds), CGRectGetHeight(alertBox.superview.bounds) + CGRectGetMidY(alertBox.bounds) + [alertBox topOverflowY]);
 }
 
 - (CGPoint)_centerForAlertBox:(MOOAlertBox *)alertBox;
