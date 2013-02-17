@@ -500,7 +500,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         
         MOOSwipeAlertDirection direction = (yVelocity < 0.0f) ? kMOOSwipeAlertDirectionUp : kMOOSwipeAlertDirectionDown;
         
-        BOOL shouldDismiss = NO;
+        BOOL shouldDismiss = YES;
         if ((velocityThresholdReached || distanceThresholdReached) && (shouldDismiss = [self _shouldDismiss]))
         {
             // Dismiss alert view
