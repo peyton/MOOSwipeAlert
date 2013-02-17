@@ -62,6 +62,7 @@
     [_dismissButton addTarget:self action:@selector(_dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
     [_dismissButton sizeToFit];
+    _dismissButton.frame = CGRectMake(30.0f, 44.0f, CGRectGetWidth(_dismissButton.frame), CGRectGetHeight(_dismissButton.frame));
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

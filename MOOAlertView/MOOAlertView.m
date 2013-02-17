@@ -204,12 +204,12 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
     [self _showFromDirection:kMOOAlertViewDirectionDown animated:YES];
     
-    self.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     // Do show animation
     [UIView animateWithDuration:self.showDuration delay:0.0 options:0 animations:^{
         self.backgroundView.alpha = self.backgroundViewAlpha;
     } completion:^(BOOL finished) {
-        self.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
 }
 
@@ -233,13 +233,13 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 {
     _alertViewFlags.dismissing = YES;
 
-    self.userInteractionEnabled = NO;    
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     void (^animations)(void) = ^{
         self.backgroundView.alpha = 0.0f;
     };
     void (^completion)(BOOL finished) = ^(BOOL finished){
-        self.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         [self removeFromSuperview];
         _alertViewFlags.dismissing = NO;
     };
@@ -277,7 +277,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     }
     
     // Prevent alert box from accepting touches while animating
-    self.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     // Perform layout
     [self setNeedsLayout];
@@ -311,7 +311,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     [self _prepareToShowFromDirection:direction];
     
     void (^completion)(BOOL finished) = ^(BOOL finished){
-        self.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         [self _didPresentAnimated:animated direction:direction];
     };
     
@@ -327,7 +327,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)_prepareToDismiss;
 {
-    self.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     _alertViewFlags.preparedToDismiss = YES;
 }
@@ -379,7 +379,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     {
         [self _prepareToDismiss];
         [self _performDismissInDirection:direction];
-        self.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
         [self _didDismissAnimated:NO direction:direction];
     }
 }
@@ -394,10 +394,11 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     MOOAlertViewDirection direction = (velocity < 0.0f) ? kMOOAlertViewDirectionUp : kMOOAlertViewDirectionDown;
     
     NSTimeInterval dismissalDuration = (fabsf(velocity) > FLT_EPSILON) ? fabs((self.alertBox.center.y - targetPoint.y) / velocity) : self.dismissDuration;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [UIView animateWithDuration:fmin(dismissalDuration, self.dismissDuration) delay:0.0 options:(velocity == 0.0f) ? UIViewAnimationOptionCurveEaseIn : 0 animations:^{
         [self _performDismissInDirection:direction];
     } completion:^(BOOL finished) {
-        self.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
         [self _didDismissAnimated:YES direction:direction];
     }];
@@ -523,7 +524,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
             [gesture.view.layer addAnimation:rubberBandAnimation forKey:kMOORubberBandAnimationKey];
             
             // Prevent user interaction while animation in progress
-            self.userInteractionEnabled = NO;
+            [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
         }
     }
 }
@@ -664,7 +665,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     // If we were just to do self.userInteractionEnabled = NO, touch events would
     // fall through to views below. But disabling interaction on the entire window
     // *might* be a bit heavy-handed
-    self.window.userInteractionEnabled = NO;
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     
     CAAnimation *wobble = [CAAnimation wobbleAnimationFromPosition:fromPosition toPosition:toPosition duration:1.0f];
     wobble.delegate = self;
@@ -687,7 +688,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     if (anim == [self.alertBox.layer animationForKey:(animKey = kMOORubberBandAnimationKey)] || anim == [self.alertBox.layer animationForKey:(animKey = kMOOWobbleAnimationKey)])
     {
         [self.alertBox.layer removeAnimationForKey:animKey];
-        self.window.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }
 }
 
