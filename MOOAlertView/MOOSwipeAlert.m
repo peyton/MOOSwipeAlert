@@ -223,9 +223,15 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (BOOL)_shouldDismiss;
 {
+    // Use should dismiss block if available
+    if (self.shouldDismissBlock)
+        return self.shouldDismissBlock(self);
+    
+    // Else, use delegate if available
     if ([self.delegate respondsToSelector:@selector(alertViewShouldDismiss:)])
         return [self.delegate alertViewShouldDismiss:self];
     
+    // Default to YES
     return YES;
 }
 
@@ -639,6 +645,9 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)_didDismissAnimated:(BOOL)animated direction:(MOOSwipeAlertDirection)direction;
 {
+    if (self.dismissBlock)
+        self.dismissBlock(self, animated);
+    
     if ([self.delegate respondsToSelector:@selector(alertViewDidDismiss:animated:)])
         [self.delegate alertViewDidDismiss:self animated:animated];
     

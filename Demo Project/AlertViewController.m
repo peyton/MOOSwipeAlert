@@ -13,11 +13,10 @@
 
 @end
 
-@interface AlertViewController (MOOSwipeAlertDelegate) <MOOSwipeAlertDelegate>
-
-@end
-
 @implementation AlertViewController
+@synthesize alertView = _alertView;
+@synthesize noDisappearAlertView = _noDisappearAlertView;
+@synthesize dismissButton = _dismissButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
@@ -38,7 +37,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Create buttons
-    NSArray *buttonTitles = [NSArray arrayWithObjects:@"Alert", @"Alert without title", @"Alert without message", @"Alert with close button", @"Alert without dismissal", nil];
+    NSArray *buttonTitles = [NSArray arrayWithObjects:@"Alert", @"Alert without title", @"Alert without message", @"Alert with close button", @"Alert without dismissal", @"Alert with block callback", nil];
     
     NSUInteger index = 1;
     UIButton *button;
@@ -102,6 +101,19 @@
     _noDisappearAlertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"You will never dismiss me!!!" delegate:self];
     [_noDisappearAlertView show];
     [_noDisappearAlertView addSubview:_dismissButton];
+}
+
+- (void)_showButtonPressed6:(id)sender;
+{
+    self.alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:nil];
+    
+    __weak AlertViewController *weakSelf = self;
+    _alertView.dismissBlock = ^(MOOSwipeAlert *alert, BOOL animated) {
+        NSLog(@"dismissal block called!");
+        weakSelf.alertView = nil;
+    };
+    
+    [self.alertView show];
 }
 
 - (void)_dismissButtonPressed:(id)sender;

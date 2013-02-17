@@ -9,6 +9,7 @@
 
 // Forward declarations
 @class MOOAlertBox;
+@class MOOSwipeAlert;
 @protocol MOOSwipeAlertDelegate;
 
 // Constants
@@ -24,6 +25,9 @@ typedef NS_ENUM(NSUInteger, MOOSwipeAlertDirection) {
     kMOOSwipeAlertDirectionUp
 };
 
+// Block types
+typedef void (^MOOSwipeAlertDismissBlock)(MOOSwipeAlert *alert, BOOL animated);
+typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 
 // Protocol for storing options
 @protocol MOOSwipeAlertOptions <NSObject>
@@ -56,6 +60,8 @@ typedef NS_ENUM(NSUInteger, MOOSwipeAlertDirection) {
     } _alertViewFlags;
 }
 
+@property (nonatomic, copy) MOOSwipeAlertDismissBlock dismissBlock;
+@property (nonatomic, copy) MOOSwipeAlertShouldDismissBlock shouldDismissBlock;
 @property (nonatomic, unsafe_unretained) id<MOOSwipeAlertDelegate> delegate;
 
 @property (nonatomic, assign, readonly) MOOSwipeAlertState state;
