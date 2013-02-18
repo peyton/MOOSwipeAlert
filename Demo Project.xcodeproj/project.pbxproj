@@ -35,7 +35,7 @@
 		9C46B62815ACF792007FD187 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9C46B64C15AD09A1007FD187 /* Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alert.png; sourceTree = "<group>"; };
 		9C46B64D15AD09A1007FD187 /* Alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alert@2x.png"; sourceTree = "<group>"; };
-		9CE3B4FA15ACC61F00094B83 /* Alert View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Alert View.app"; path = MOOSwipeAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CE3B4FA15ACC61F00094B83 /* MOOSwipeAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOOSwipeAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE3B4FE15ACC61F00094B83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9CE3B50015ACC61F00094B83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CE3B50215ACC61F00094B83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,7 +94,7 @@
 		9CE3B4FB15ACC61F00094B83 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9CE3B4FA15ACC61F00094B83 /* Alert View.app */,
+				9CE3B4FA15ACC61F00094B83 /* MOOSwipeAlert.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 			);
 			name = MOOSwipeAlert;
 			productName = "Demo Project";
-			productReference = 9CE3B4FA15ACC61F00094B83 /* Alert View.app */;
+			productReference = 9CE3B4FA15ACC61F00094B83 /* MOOSwipeAlert.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

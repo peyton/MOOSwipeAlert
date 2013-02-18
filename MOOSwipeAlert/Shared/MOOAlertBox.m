@@ -9,7 +9,8 @@
 
 #import "MOOSwipeAlertConstants.h"
 
-#define kMOOAlertBoxContentEdgeInsets UIEdgeInsetsMake(3.0f, 0.0f, 7.0f, 0.0f)
+#define kMOOAlertBoxOverlayEdgeInsets UIEdgeInsetsMake(-3.0f, -5.0f, -7.0f, -5.0f)
+#define kMOOAlertBoxMinContentHeight 73.0f
 #define kMOOAlertBoxCornerRadius 4.0f
 
 static NSString * const kMOOAlertBoxTopAccessoryViewKeyPath = @"topAccessoryView";
@@ -80,20 +81,18 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
 - (void)layoutSubviews;
 {
     [super layoutSubviews];
-        
-    // Make overlay fill view
-    self.overlayView.frame = self.bounds;
     
     // Size content view to fit
     [self.contentView sizeToFit];
-    
-    // Position content view
-    UIEdgeInsets contentInsets = kMOOAlertBoxContentEdgeInsets;
-    CGPoint contentViewOrigin = CGPointMake(contentInsets.left, contentInsets.top);
     CGRect contentViewFrame = self.contentView.frame;
-    contentViewFrame.origin = contentViewOrigin;
+    if (contentViewFrame.size.height < kMOOAlertBoxMinContentHeight) contentViewFrame.size.height = kMOOAlertBoxMinContentHeight;
     self.contentView.frame = contentViewFrame;
-
+    
+    // Make overlay fill view
+    CGRect overlayViewFrame = contentViewFrame;
+    overlayViewFrame = UIEdgeInsetsInsetRect(overlayViewFrame, kMOOAlertBoxOverlayEdgeInsets);
+    self.overlayView.frame = overlayViewFrame;
+    
     // Position close button
     [self.closeButton sizeToFit];
     self.closeButton.center = CGPointMake(CGRectGetMidX(self.closeButton.bounds), CGRectGetMinY(self.contentView.frame));
@@ -121,21 +120,9 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
 
 - (CGSize)sizeThatFits:(CGSize)size;
 {
-    UIEdgeInsets contentInsets = kMOOAlertBoxContentEdgeInsets;
-    
-    // Apply insets to the constraint size given
-    CGSize contentViewConstraint = size;
-    if (!CGSizeEqualToSize(contentViewConstraint, CGSizeZero))
-    {
-        contentViewConstraint.height -= contentInsets.top + contentInsets.bottom;
-        contentViewConstraint.width -= contentInsets.left + contentInsets.right;
-    }
-    
     // Determine the content view's size
-    CGSize contentViewSize = [self.contentView sizeThatFits:contentViewConstraint];
-        
-    CGSize sizeThatFits = CGSizeMake(contentViewSize.width + contentInsets.left + contentInsets.right, contentViewSize.height + contentInsets.top + contentInsets.bottom);
-    return sizeThatFits;
+    CGSize contentViewSize = [self.contentView sizeThatFits:size];
+    return contentViewSize;
 }
 
 - (CGRect)apparentBounds;

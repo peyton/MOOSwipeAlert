@@ -69,8 +69,18 @@
     titleSize.width = messageSize.width = labelWidth;
     
     // Position labels
-    CGRect titleFrame = CGRectMake(self.contentInsets.left, self.contentInsets.top, titleSize.width, titleSize.height);
-    CGRect messageFrame = CGRectMake(self.contentInsets.left, CGRectGetMaxY(titleFrame) + ((titleSize.height) ? self.titleSpacing : 0), labelWidth, messageSize.height);
+
+    CGRect titleFrame;
+    CGRect messageFrame;
+    if (messageSize.height < FLT_EPSILON)
+    {
+        // If title only, position title in center
+        
+        titleFrame = CGRectMake(self.contentInsets.left, (CGRectGetHeight(self.bounds) - titleSize.height) / 2.0f, titleSize.width, titleSize.height);
+    } else {
+        titleFrame = CGRectMake(self.contentInsets.left, self.contentInsets.top, titleSize.width, titleSize.height);
+        messageFrame = CGRectMake(self.contentInsets.left, CGRectGetMaxY(titleFrame) + ((titleSize.height) ? self.titleSpacing : 0), labelWidth, messageSize.height);
+    }
     self.titleLabel.frame = titleFrame;
     self.messageLabel.frame = messageFrame;
 }
