@@ -77,15 +77,14 @@
 
 - (CGSize)sizeThatFits:(CGSize)size;
 {
-    CGFloat width = CGRectGetWidth(self.superview.bounds);
-    CGFloat labelWidth = width - self.contentInsets.left - self.contentInsets.right;
+    CGFloat labelWidth = size.width - self.contentInsets.left - self.contentInsets.right;
     
     CGSize titleSize = [self.titleLabel.text sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(labelWidth, CGFLOAT_MAX) lineBreakMode:self.titleLabel.lineBreakMode];
     CGSize messageSize = [self.messageLabel.text sizeWithFont:self.messageLabel.font constrainedToSize:CGSizeMake(labelWidth, CGFLOAT_MAX) lineBreakMode:self.messageLabel.lineBreakMode];
     
     CGFloat height = self.contentInsets.top + titleSize.height + messageSize.height + self.contentInsets.bottom;
     if (titleSize.height && messageSize.height) height += self.titleSpacing;
-    return CGSizeMake(width, height);
+    return CGSizeMake(size.width, height);
 }
 
 #pragma mark - View creation methods

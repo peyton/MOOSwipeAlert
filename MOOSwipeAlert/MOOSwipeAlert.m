@@ -15,8 +15,15 @@
 #import "CAAnimation+MOOSwipeAlert.h"
 #import "MOOAlertBox.h"
 
+
+// Animation keys
 static NSString * const kMOORubberBandAnimationKey = @"kMOORubberBandAnimationKey";
 static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
+
+// Helper functions
+static CGFloat UIInterfaceOrientationAngle(UIInterfaceOrientation orientation);
+static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIInterfaceOrientation orientation);
+
 
 @implementation MOOSwipeAlertOptions
 @synthesize backgroundViewAlpha, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showsCloseButton;
@@ -147,8 +154,17 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     // Size and position background view
     self.backgroundView.frame = self.bounds;
     
-    // Position alert box
+    // Size alert box
     [self.alertBox sizeToFit];
+    CGSize alertBoxSizeConstraint = CGSizeZero;
+    alertBoxSizeConstraint.height = CGRectGetHeight(self.bounds);
+    alertBoxSizeConstraint.width = CGRectGetWidth(self.window.bounds);
+    CGSize alertBoxSize = [self.alertBox sizeThatFits:alertBoxSizeConstraint];
+    CGRect alertBoxBounds = CGRectZero;
+    alertBoxBounds.size = alertBoxSize;
+    self.alertBox.bounds = alertBoxBounds;
+    
+    // Position alert box
     switch (self.state) {
         case kMOOSwipeAlertStateHiddenAbove:
             // Move alert box off the top of the screen
@@ -189,6 +205,36 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     CGRectDivide(self.bounds, &slice, &remainder, CGRectGetHeight(_keyboardFrame), CGRectMaxYEdge);
     return CGPointMake(CGRectGetMidX(remainder), CGRectGetMidY(remainder));
 }
+
+#pragma mark - Orientation handling
+
+- (void)_handleWillChangeStatusBarOrientationNotification:(NSNotification *)notification;
+{
+    // Note: this notification should be sent in an animation block, so no need to explicitly animate.
+    
+    // Grab the new rotation transformation
+    UIInterfaceOrientation newOrientation = [[notification.userInfo objectForKey:UIApplicationStatusBarOrientationUserInfoKey] unsignedIntegerValue];
+    
+    [self _configureWithOrientation:newOrientation];
+}
+
+- (void)_configureWithOrientation:(UIInterfaceOrientation)orientation;
+{
+    CGFloat angle = UIInterfaceOrientationAngle(orientation);
+    CGAffineTransform rotation = CGAffineTransformMakeRotation(angle);
+    
+    // Do nothing if this new rotation is no different from the current rotation.
+    if (CGAffineTransformEqualToTransform(rotation, self.transform))
+        return;
+    
+    self.transform = rotation;
+    self.frame = self.window.bounds; // set the frame to trigger transformation
+    
+    // Perform layout
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
 
 #pragma mark - Display methods
 
@@ -613,6 +659,11 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         accessoryView.alpha = 0.0f;
     }
     
+    // Prepare rotation
+    [self _configureWithOrientation:[UIApplication sharedApplication].statusBarOrientation];
+    
+    // Configure notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleWillChangeStatusBarOrientationNotification:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleKeyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handleKeyboardWillHideNotification:) name:UIKeyboardWillShowNotification object:nil];
 }
@@ -656,6 +707,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
         accessoryView.alpha = 0.0f;
     }
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     _keyboardFrame = CGRectZero;
@@ -760,3 +812,32 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 }
 
 @end
+
+// Orientation support
+CGFloat UIInterfaceOrientationAngle(UIInterfaceOrientation orientation)
+{
+    CGFloat angle;
+    
+    switch (orientation)
+    {
+        case UIInterfaceOrientationPortraitUpsideDown:
+            angle = M_PI;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            angle = -M_PI_2;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            angle = M_PI_2;
+            break;
+        default:
+            angle = 0.0f;
+            break;
+    }
+    
+    return angle;
+}
+
+UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIInterfaceOrientation orientation)
+{
+    return 1 << orientation;
+}

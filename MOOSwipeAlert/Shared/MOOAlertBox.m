@@ -80,7 +80,7 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
 - (void)layoutSubviews;
 {
     [super layoutSubviews];
-    
+        
     // Make overlay fill view
     self.overlayView.frame = self.bounds;
     
@@ -122,6 +122,8 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
 - (CGSize)sizeThatFits:(CGSize)size;
 {
     UIEdgeInsets contentInsets = kMOOAlertBoxContentEdgeInsets;
+    
+    // Apply insets to the constraint size given
     CGSize contentViewConstraint = size;
     if (!CGSizeEqualToSize(contentViewConstraint, CGSizeZero))
     {
@@ -129,8 +131,9 @@ static NSString * const kMOOAlertBoxBottomAccessoryViewKeyPath = @"bottomAccesso
         contentViewConstraint.width -= contentInsets.left + contentInsets.right;
     }
     
+    // Determine the content view's size
     CGSize contentViewSize = [self.contentView sizeThatFits:contentViewConstraint];
-    
+        
     CGSize sizeThatFits = CGSizeMake(contentViewSize.width + contentInsets.left + contentInsets.right, contentViewSize.height + contentInsets.top + contentInsets.bottom);
     return sizeThatFits;
 }
