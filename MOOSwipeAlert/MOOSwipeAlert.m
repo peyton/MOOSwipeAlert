@@ -26,7 +26,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 
 
 @implementation MOOSwipeAlertOptions
-@synthesize backgroundViewAlpha, fadeBackgroundOnDragCoefficient, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showCloseButton;
+@synthesize swipeable, backgroundViewAlpha, fadeBackgroundOnDragCoefficient, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showCloseButton;
 @end
 
 @interface MOOSwipeAlert ()
@@ -50,6 +50,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 @synthesize backgroundView = _backgroundView;
 @synthesize alertBox = _alertBox;
 
+@synthesize swipeable = _swipeable;
 @synthesize backgroundViewAlpha = _backgroundViewAlpha;
 @synthesize fadeBackgroundOnDragCoefficient = _fadeBackgroundOnDragCoefficient;
 @synthesize showDuration = _showDuration;
@@ -70,6 +71,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     
     // Initialize shared defaults
     MOOSwipeAlertOptions *defaults = [self sharedDefaults];
+    defaults.swipeable = YES;
     defaults.backgroundViewAlpha = 0.7f;
     defaults.fadeBackgroundOnDragCoefficient = 0.5f;
     defaults.showDuration = defaults.dismissDuration = defaults.accessoryViewFadeDuration = 0.3;
@@ -511,6 +513,10 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 
 - (void)_handleDrag:(UIPanGestureRecognizer *)gesture;
 {
+    // If swipeability is disabled, do nothing
+    if (!self.swipeable)
+        return;
+    
     if (gesture.state == UIGestureRecognizerStateBegan)
     {
         self.state = kMOOSwipeAlertStateDragging;

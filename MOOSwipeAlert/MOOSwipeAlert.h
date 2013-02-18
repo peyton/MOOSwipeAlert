@@ -32,6 +32,7 @@ typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 // Protocol for storing options
 @protocol MOOSwipeAlertOptions <NSObject>
 
+@property (nonatomic, assign) BOOL swipeable;
 @property (nonatomic, assign) CGFloat backgroundViewAlpha;
 @property (nonatomic, assign) CGFloat fadeBackgroundOnDragCoefficient;
 @property (nonatomic, assign) NSTimeInterval showDuration;
