@@ -20,6 +20,11 @@ xcuserdata
 *.xcuserdatad
 *.xcuserstate
 *.xcworkspace
+#    NB: also, whitelist the default ones, some projects need to use these
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
 
 
 # Generated files
@@ -28,6 +33,12 @@ VersionX-revision.h
 
 # build products
 build/
+DerivedData/
+
+
+# Cocoapods support (cocoapods.org)
+Pods/
+Podfile.lock
 
 
 # Other source repository archive directories (protects when importing)
