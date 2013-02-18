@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		9C46B62715ACF78B007FD187 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62615ACF78B007FD187 /* Icon.png */; };
 		9C46B62915ACF792007FD187 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62815ACF792007FD187 /* Icon@2x.png */; };
-		9C46B63915ACF7A9007FD187 /* MOOSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B62C15ACF7A9007FD187 /* MOOSwipeAlert.m */; };
-		9C46B63A15ACF7A9007FD187 /* MOOMessageSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B62E15ACF7A9007FD187 /* MOOMessageSwipeAlert.m */; };
-		9C46B63B15ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63115ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.m */; };
-		9C46B63C15ACF7A9007FD187 /* MOOAlertBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63315ACF7A9007FD187 /* MOOAlertBox.m */; };
-		9C46B63E15ACF7A9007FD187 /* MOOSwipeAlertConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63615ACF7A9007FD187 /* MOOSwipeAlertConstants.m */; };
-		9C46B63F15ACF7A9007FD187 /* MOOMessageAlertContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */; };
 		9C46B64E15AD09A1007FD187 /* Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B64C15AD09A1007FD187 /* Alert.png */; };
 		9C46B64F15AD09A1007FD187 /* Alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B64D15AD09A1007FD187 /* Alert@2x.png */; };
 		9CE3B4FF15ACC61F00094B83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B4FE15ACC61F00094B83 /* UIKit.framework */; };
@@ -27,24 +21,18 @@
 		9CE3B54315ACE22F00094B83 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B54215ACE22F00094B83 /* QuartzCore.framework */; };
 		9CF2D8B716CE853900800B3D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF2D8B616CE853900800B3D /* Default-568h@2x.png */; };
 		9CF2D8B916D1310700800B3D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF2D8B816D1310700800B3D /* AudioToolbox.framework */; };
-		9CF8022F16D1587D00610D70 /* Default.MOOSwipeAlertTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8022E16D1587D00610D70 /* Default.MOOSwipeAlertTheme.bundle */; };
+		9CF8024016D1B17800610D70 /* MOOMessageSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023216D1B17800610D70 /* MOOMessageSwipeAlert.m */; };
+		9CF8024116D1B17800610D70 /* MOOSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023416D1B17800610D70 /* MOOSwipeAlert.m */; };
+		9CF8024216D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023716D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m */; };
+		9CF8024316D1B17800610D70 /* MOOAlertBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023916D1B17800610D70 /* MOOAlertBox.m */; };
+		9CF8024416D1B17800610D70 /* MOOMessageAlertContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */; };
+		9CF8024516D1B17800610D70 /* MOOSwipeAlertConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */; };
+		9CF8024616D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8023F16D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9C46B62615ACF78B007FD187 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9C46B62815ACF792007FD187 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		9C46B62B15ACF7A9007FD187 /* MOOSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlert.h; sourceTree = "<group>"; };
-		9C46B62C15ACF7A9007FD187 /* MOOSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlert.m; sourceTree = "<group>"; };
-		9C46B62D15ACF7A9007FD187 /* MOOMessageSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageSwipeAlert.h; sourceTree = "<group>"; };
-		9C46B62E15ACF7A9007FD187 /* MOOMessageSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageSwipeAlert.m; sourceTree = "<group>"; };
-		9C46B63015ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+MOOSwipeAlert.h"; sourceTree = "<group>"; };
-		9C46B63115ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+MOOSwipeAlert.m"; sourceTree = "<group>"; };
-		9C46B63215ACF7A9007FD187 /* MOOAlertBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOAlertBox.h; sourceTree = "<group>"; };
-		9C46B63315ACF7A9007FD187 /* MOOAlertBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOAlertBox.m; sourceTree = "<group>"; };
-		9C46B63515ACF7A9007FD187 /* MOOSwipeAlertConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlertConstants.h; sourceTree = "<group>"; };
-		9C46B63615ACF7A9007FD187 /* MOOSwipeAlertConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlertConstants.m; sourceTree = "<group>"; };
-		9C46B63715ACF7A9007FD187 /* MOOMessageAlertContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageAlertContentView.h; sourceTree = "<group>"; };
-		9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageAlertContentView.m; sourceTree = "<group>"; };
 		9C46B64C15AD09A1007FD187 /* Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alert.png; sourceTree = "<group>"; };
 		9C46B64D15AD09A1007FD187 /* Alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alert@2x.png"; sourceTree = "<group>"; };
 		9CE3B4FA15ACC61F00094B83 /* Alert View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Alert View.app"; path = MOOSwipeAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +50,19 @@
 		9CE3B54215ACE22F00094B83 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9CF2D8B616CE853900800B3D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9CF2D8B816D1310700800B3D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9CF8022E16D1587D00610D70 /* Default.MOOSwipeAlertTheme.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Default.MOOSwipeAlertTheme.bundle; sourceTree = "<group>"; };
+		9CF8023116D1B17800610D70 /* MOOMessageSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageSwipeAlert.h; sourceTree = "<group>"; };
+		9CF8023216D1B17800610D70 /* MOOMessageSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageSwipeAlert.m; sourceTree = "<group>"; };
+		9CF8023316D1B17800610D70 /* MOOSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlert.h; sourceTree = "<group>"; };
+		9CF8023416D1B17800610D70 /* MOOSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlert.m; sourceTree = "<group>"; };
+		9CF8023616D1B17800610D70 /* CAAnimation+MOOSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+MOOSwipeAlert.h"; sourceTree = "<group>"; };
+		9CF8023716D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+MOOSwipeAlert.m"; sourceTree = "<group>"; };
+		9CF8023816D1B17800610D70 /* MOOAlertBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOAlertBox.h; sourceTree = "<group>"; };
+		9CF8023916D1B17800610D70 /* MOOAlertBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOAlertBox.m; sourceTree = "<group>"; };
+		9CF8023A16D1B17800610D70 /* MOOMessageAlertContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageAlertContentView.h; sourceTree = "<group>"; };
+		9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageAlertContentView.m; sourceTree = "<group>"; };
+		9CF8023C16D1B17800610D70 /* MOOSwipeAlertConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlertConstants.h; sourceTree = "<group>"; };
+		9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlertConstants.m; sourceTree = "<group>"; };
+		9CF8023F16D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Default.MOOSwipeAlertTheme.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,34 +81,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9C46B62A15ACF7A9007FD187 /* MOOAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				9C46B62B15ACF7A9007FD187 /* MOOSwipeAlert.h */,
-				9C46B62C15ACF7A9007FD187 /* MOOSwipeAlert.m */,
-				9C46B62D15ACF7A9007FD187 /* MOOMessageSwipeAlert.h */,
-				9C46B62E15ACF7A9007FD187 /* MOOMessageSwipeAlert.m */,
-				9C46B62F15ACF7A9007FD187 /* Shared */,
-				9CF8022D16D1587D00610D70 /* Themes */,
-			);
-			path = MOOAlertView;
-			sourceTree = "<group>";
-		};
-		9C46B62F15ACF7A9007FD187 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				9C46B63015ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.h */,
-				9C46B63115ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.m */,
-				9C46B63215ACF7A9007FD187 /* MOOAlertBox.h */,
-				9C46B63315ACF7A9007FD187 /* MOOAlertBox.m */,
-				9C46B63515ACF7A9007FD187 /* MOOSwipeAlertConstants.h */,
-				9C46B63615ACF7A9007FD187 /* MOOSwipeAlertConstants.m */,
-				9C46B63715ACF7A9007FD187 /* MOOMessageAlertContentView.h */,
-				9C46B63815ACF7A9007FD187 /* MOOMessageAlertContentView.m */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		9CE3B4EF15ACC61F00094B83 = {
 			isa = PBXGroup;
 			children = (
@@ -170,15 +142,43 @@
 		9CE3B51B15ACC67900094B83 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				9C46B62A15ACF7A9007FD187 /* MOOAlertView */,
+				9CF8023016D1B17800610D70 /* MOOSwipeAlert */,
 			);
 			name = External;
 			sourceTree = "<group>";
 		};
-		9CF8022D16D1587D00610D70 /* Themes */ = {
+		9CF8023016D1B17800610D70 /* MOOSwipeAlert */ = {
 			isa = PBXGroup;
 			children = (
-				9CF8022E16D1587D00610D70 /* Default.MOOSwipeAlertTheme.bundle */,
+				9CF8023116D1B17800610D70 /* MOOMessageSwipeAlert.h */,
+				9CF8023216D1B17800610D70 /* MOOMessageSwipeAlert.m */,
+				9CF8023316D1B17800610D70 /* MOOSwipeAlert.h */,
+				9CF8023416D1B17800610D70 /* MOOSwipeAlert.m */,
+				9CF8023516D1B17800610D70 /* Shared */,
+				9CF8023E16D1B17800610D70 /* Themes */,
+			);
+			path = MOOSwipeAlert;
+			sourceTree = "<group>";
+		};
+		9CF8023516D1B17800610D70 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9CF8023616D1B17800610D70 /* CAAnimation+MOOSwipeAlert.h */,
+				9CF8023716D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m */,
+				9CF8023816D1B17800610D70 /* MOOAlertBox.h */,
+				9CF8023916D1B17800610D70 /* MOOAlertBox.m */,
+				9CF8023A16D1B17800610D70 /* MOOMessageAlertContentView.h */,
+				9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */,
+				9CF8023C16D1B17800610D70 /* MOOSwipeAlertConstants.h */,
+				9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9CF8023E16D1B17800610D70 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				9CF8023F16D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -240,7 +240,7 @@
 				9C46B64E15AD09A1007FD187 /* Alert.png in Resources */,
 				9C46B64F15AD09A1007FD187 /* Alert@2x.png in Resources */,
 				9CF2D8B716CE853900800B3D /* Default-568h@2x.png in Resources */,
-				9CF8022F16D1587D00610D70 /* Default.MOOSwipeAlertTheme.bundle in Resources */,
+				9CF8024616D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,12 +254,12 @@
 				9CE3B50B15ACC61F00094B83 /* main.m in Sources */,
 				9CE3B50F15ACC61F00094B83 /* AppDelegate.m in Sources */,
 				9CE3B51215ACC61F00094B83 /* AlertViewController.m in Sources */,
-				9C46B63915ACF7A9007FD187 /* MOOSwipeAlert.m in Sources */,
-				9C46B63A15ACF7A9007FD187 /* MOOMessageSwipeAlert.m in Sources */,
-				9C46B63B15ACF7A9007FD187 /* CAAnimation+MOOSwipeAlert.m in Sources */,
-				9C46B63C15ACF7A9007FD187 /* MOOAlertBox.m in Sources */,
-				9C46B63E15ACF7A9007FD187 /* MOOSwipeAlertConstants.m in Sources */,
-				9C46B63F15ACF7A9007FD187 /* MOOMessageAlertContentView.m in Sources */,
+				9CF8024016D1B17800610D70 /* MOOMessageSwipeAlert.m in Sources */,
+				9CF8024116D1B17800610D70 /* MOOSwipeAlert.m in Sources */,
+				9CF8024216D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m in Sources */,
+				9CF8024316D1B17800610D70 /* MOOAlertBox.m in Sources */,
+				9CF8024416D1B17800610D70 /* MOOMessageAlertContentView.m in Sources */,
+				9CF8024516D1B17800610D70 /* MOOSwipeAlertConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

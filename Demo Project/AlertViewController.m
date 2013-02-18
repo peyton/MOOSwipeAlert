@@ -24,7 +24,7 @@
         return nil;
     
     // Configure tab bar
-    self.title = NSLocalizedString(@"Alerts", @"Alerts");
+    self.title = NSLocalizedString(@"Message", @"Message");
     self.tabBarItem.image = [UIImage imageNamed:@"Alert.png"];
     
     return self;
