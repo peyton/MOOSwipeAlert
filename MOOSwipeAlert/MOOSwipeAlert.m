@@ -26,7 +26,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 
 
 @implementation MOOSwipeAlertOptions
-@synthesize backgroundViewAlpha, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showsCloseButton;
+@synthesize backgroundViewAlpha, fadeBackgroundOnDragCoefficient, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showCloseButton;
 @end
 
 @interface MOOSwipeAlert ()
@@ -51,6 +51,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 @synthesize alertBox = _alertBox;
 
 @synthesize backgroundViewAlpha = _backgroundViewAlpha;
+@synthesize fadeBackgroundOnDragCoefficient = _fadeBackgroundOnDragCoefficient;
 @synthesize showDuration = _showDuration;
 @synthesize dismissDuration = _dismissalDuration;
 @synthesize accessoryViewFadeDuration = _accessoryViewFadeDuration;
@@ -60,7 +61,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 @synthesize dismissOnAlertBoxTouch = _dismissOnAlertBoxTouch;
 @synthesize dismissOnBackgroundTouch = _dismissOnBackgroundTouch;
 @synthesize vibrateOnFailedDismiss = _vibrateOnFailedDismiss;
-@dynamic showsCloseButton;
+@dynamic showCloseButton;
 
 + (void)initialize;
 {
@@ -70,13 +71,14 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     // Initialize shared defaults
     MOOSwipeAlertOptions *defaults = [self sharedDefaults];
     defaults.backgroundViewAlpha = 0.7f;
+    defaults.fadeBackgroundOnDragCoefficient = 0.5f;
     defaults.showDuration = defaults.dismissDuration = defaults.accessoryViewFadeDuration = 0.3;
     defaults.dismissDistanceThreshold = 75.0f;
     defaults.dismissVelocityThreshold = 350.0f;
     defaults.wobbleDistance = 20.0f;
     defaults.dismissOnAlertBoxTouch = YES;
     defaults.dismissOnBackgroundTouch = YES;
-    defaults.showsCloseButton = NO;
+    defaults.showCloseButton = NO;
     defaults.vibrateOnFailedDismiss = YES;
     
     // Load themes bundle
@@ -108,7 +110,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     [self addSubview:self.alertBox];
     
     // Wire up alert box close button
-    self.alertBox.closeButton.hidden = self.showsCloseButton;
+    self.alertBox.closeButton.hidden = self.showCloseButton;
     [self.alertBox.closeButton addTarget:self action:@selector(_closeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     // Create alert box drag gesture recognizer
@@ -525,6 +527,17 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
         CGPoint translationPoint = [gesture translationInView:gesture.view];
         CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(0.0f, translationPoint.y);
         gesture.view.center = CGPointApplyAffineTransform(gesture.view.center, translationTransform);
+        
+        // Set background alpha relative to the distance traveled from zero
+        CGPoint naturalCenter = [self _centerForAlertBox:self.alertBox];
+        CGPoint targetPoint = naturalCenter.y > gesture.view.center.y ? [self _aboveCenterForAlertBox:self.alertBox] : [self _belowCenterForAlertBox:self.alertBox];
+        CGFloat curDistanceFromCenter = fabsf(naturalCenter.y - gesture.view.center.y);
+        CGFloat totalDistanceFromCenter = fabsf(naturalCenter.y - targetPoint.y);
+        CGFloat percentDragged = curDistanceFromCenter / totalDistanceFromCenter;
+        
+        self.backgroundView.alpha = self.backgroundViewAlpha * (1.0f - powf(percentDragged, 3.0f) * self.fadeBackgroundOnDragCoefficient);
+        
+        // Reset translation
         [gesture setTranslation:CGPointZero inView:gesture.view];
     }
     
@@ -569,11 +582,18 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
             // Set position to the start (otherwise the animation "pops back" to the current position)
             gesture.view.layer.position = _dragStartPosition;
             
+            // Return-to-center animations
+
             // Rubber band animation
             CAAnimation *rubberBandAnimation = [CAAnimation rubberBandAnimationFromPosition:currentPosition toPosition:_dragStartPosition duration:self.dismissDuration * 2.0];
             rubberBandAnimation.delegate = self;
             rubberBandAnimation.removedOnCompletion = NO;
             [gesture.view.layer addAnimation:rubberBandAnimation forKey:kMOORubberBandAnimationKey];
+            
+            // Fade background back to original alpha
+            [UIView animateWithDuration:self.dismissDuration delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+                self.backgroundView.alpha = self.backgroundViewAlpha;
+            } completion:NULL];
             
             // Prevent user interaction while animation in progress
             [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -786,12 +806,12 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 
 #pragma mark - Getters and setters
 
-- (BOOL)showsCloseButton;
+- (BOOL)showCloseButton;
 {
     return !self.alertBox.closeButton.hidden;
 }
 
-- (void)setShowsCloseButton:(BOOL)showCloseButton;
+- (void)setShowCloseButton:(BOOL)showCloseButton;
 {
     self.alertBox.closeButton.hidden = !showCloseButton;
 }

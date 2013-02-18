@@ -33,6 +33,7 @@ typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 @protocol MOOSwipeAlertOptions <NSObject>
 
 @property (nonatomic, assign) CGFloat backgroundViewAlpha;
+@property (nonatomic, assign) CGFloat fadeBackgroundOnDragCoefficient;
 @property (nonatomic, assign) NSTimeInterval showDuration;
 @property (nonatomic, assign) NSTimeInterval dismissDuration;
 @property (nonatomic, assign) NSTimeInterval accessoryViewFadeDuration;
@@ -42,7 +43,7 @@ typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 @property (nonatomic, assign) BOOL dismissOnAlertBoxTouch;
 @property (nonatomic, assign) BOOL dismissOnBackgroundTouch;
 @property (nonatomic, assign) BOOL vibrateOnFailedDismiss;
-@property (nonatomic, assign) BOOL showsCloseButton;
+@property (nonatomic, assign) BOOL showCloseButton;
 
 @end
 @interface MOOSwipeAlertOptions : NSObject <MOOSwipeAlertOptions>
