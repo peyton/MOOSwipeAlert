@@ -14,16 +14,13 @@
 
 #import "CAAnimation+MOOSwipeAlert.h"
 #import "MOOAlertBox.h"
+#import "MOOSwipeAlertHelpers.h"
 
 #define kMOOSwipeAlertiPadWidth 320.f
 
 // Animation keys
 static NSString * const kMOORubberBandAnimationKey = @"kMOORubberBandAnimationKey";
 static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
-
-// Helper functions
-static CGFloat UIInterfaceOrientationAngle(UIInterfaceOrientation orientation);
-static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIInterfaceOrientation orientation);
 
 
 @implementation MOOSwipeAlertOptions
@@ -798,22 +795,10 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 
 #pragma mark - Configuration methods
 
-- (void)configureWithOptions:(id<MOOSwipeAlertOptions>)options;
+- (void)configureWithOptions:(NSObject<MOOSwipeAlertOptions> *)options;
 {
-    // Grab the set of property names from the MOOSwipeAlertOptions protocol
-    unsigned int outCount;
-    objc_property_t *properties = protocol_copyPropertyList(@protocol(MOOSwipeAlertOptions), &outCount);
-    NSMutableSet *propertyNames = [NSMutableSet setWithCapacity:outCount];
-    for (unsigned int i = 0; i < outCount; i++)
-    {
-        objc_property_t property = properties[i];
-        NSString *propertyName = [NSString stringWithCString:property_getName(property) encoding:NSASCIIStringEncoding];
-        [propertyNames addObject:propertyName];
-    }
     
-    // Copy each property from the options object
-    for (NSString *propertyName in propertyNames)
-        [self setValue:[(NSObject *)options valueForKey:propertyName] forKey:propertyName];
+    copyProtocolProperties(@protocol(MOOSwipeAlertOptions), options, self);
 }
 
 #pragma mark - Getters and setters
@@ -845,31 +830,4 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
 
 @end
 
-// Orientation support
-CGFloat UIInterfaceOrientationAngle(UIInterfaceOrientation orientation)
-{
-    CGFloat angle;
-    
-    switch (orientation)
-    {
-        case UIInterfaceOrientationPortraitUpsideDown:
-            angle = M_PI;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            angle = -M_PI_2;
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            angle = M_PI_2;
-            break;
-        default:
-            angle = 0.0f;
-            break;
-    }
-    
-    return angle;
-}
 
-UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIInterfaceOrientation orientation)
-{
-    return 1 << orientation;
-}

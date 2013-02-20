@@ -74,7 +74,7 @@ typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 - (void)show;
 - (void)dismissAnimated:(BOOL)animated;
 
-- (void)configureWithOptions:(id<MOOSwipeAlertOptions>)options;
+- (void)configureWithOptions:(NSObject<MOOSwipeAlertOptions> *)options;
 + (id<MOOSwipeAlertOptions>)sharedDefaults;
 
 @end

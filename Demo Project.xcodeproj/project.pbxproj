@@ -11,6 +11,7 @@
 		9C46B62915ACF792007FD187 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62815ACF792007FD187 /* Icon@2x.png */; };
 		9C46B64E15AD09A1007FD187 /* Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B64C15AD09A1007FD187 /* Alert.png */; };
 		9C46B64F15AD09A1007FD187 /* Alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B64D15AD09A1007FD187 /* Alert@2x.png */; };
+		9C704BE016D52592000C0099 /* MOOSwipeAlertHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C704BDF16D52592000C0099 /* MOOSwipeAlertHelpers.m */; };
 		9CE3B4FF15ACC61F00094B83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B4FE15ACC61F00094B83 /* UIKit.framework */; };
 		9CE3B50115ACC61F00094B83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B50015ACC61F00094B83 /* Foundation.framework */; };
 		9CE3B50315ACC61F00094B83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE3B50215ACC61F00094B83 /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 		9C46B62815ACF792007FD187 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9C46B64C15AD09A1007FD187 /* Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Alert.png; sourceTree = "<group>"; };
 		9C46B64D15AD09A1007FD187 /* Alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Alert@2x.png"; sourceTree = "<group>"; };
+		9C704BDF16D52592000C0099 /* MOOSwipeAlertHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlertHelpers.m; sourceTree = "<group>"; };
+		9C704BE116D525B4000C0099 /* MOOSwipeAlertHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlertHelpers.h; sourceTree = "<group>"; };
 		9CE3B4FA15ACC61F00094B83 /* MOOSwipeAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOOSwipeAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE3B4FE15ACC61F00094B83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9CE3B50015ACC61F00094B83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -171,6 +174,8 @@
 				9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */,
 				9CF8023C16D1B17800610D70 /* MOOSwipeAlertConstants.h */,
 				9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */,
+				9C704BE116D525B4000C0099 /* MOOSwipeAlertHelpers.h */,
+				9C704BDF16D52592000C0099 /* MOOSwipeAlertHelpers.m */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				9CF8024316D1B17800610D70 /* MOOAlertBox.m in Sources */,
 				9CF8024416D1B17800610D70 /* MOOMessageAlertContentView.m in Sources */,
 				9CF8024516D1B17800610D70 /* MOOSwipeAlertConstants.m in Sources */,
+				9C704BE016D52592000C0099 /* MOOSwipeAlertHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
