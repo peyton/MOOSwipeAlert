@@ -15,6 +15,7 @@
 #import "CAAnimation+MOOSwipeAlert.h"
 #import "MOOAlertBox.h"
 
+#define kMOOSwipeAlertiPadWidth 320.f
 
 // Animation keys
 static NSString * const kMOORubberBandAnimationKey = @"kMOORubberBandAnimationKey";
@@ -162,7 +163,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     [self.alertBox sizeToFit];
     CGSize alertBoxSizeConstraint = CGSizeZero;
     alertBoxSizeConstraint.height = CGRectGetHeight(self.bounds);
-    alertBoxSizeConstraint.width = CGRectGetWidth(self.window.bounds);
+    alertBoxSizeConstraint.width = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? kMOOSwipeAlertiPadWidth : CGRectGetWidth(self.window.bounds);
     CGSize alertBoxSize = [self.alertBox sizeThatFits:alertBoxSizeConstraint];
     CGRect alertBoxBounds = CGRectZero;
     alertBoxBounds.size = alertBoxSize;
