@@ -173,22 +173,23 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     switch (self.state) {
         case kMOOSwipeAlertStateHiddenAbove:
             // Move alert box off the top of the screen
-            self.alertBox.center = [self _aboveCenterForAlertBox:self.alertBox];
+            self.alertBox.layer.position = [self _aboveCenterForAlertBox:self.alertBox];
             break;
         case kMOOSwipeAlertStateHiddenBelow:
         {
             // Move alert box off the bottom of the screen
-            self.alertBox.center = [self _belowCenterForAlertBox:self.alertBox];
+            self.alertBox.layer.position = [self _belowCenterForAlertBox:self.alertBox];
             break;
         }
         case kMOOSwipeAlertStateShowing:
         {
             // Move alert box to the center of the screen
-            self.alertBox.center = [self _centerForAlertBox:self.alertBox];
+            self.alertBox.layer.position = [self _centerForAlertBox:self.alertBox];
             self.alertBox.frame = CGRectIntegral(self.alertBox.frame);
             break;
         }
         case kMOOSwipeAlertStateDragging:
+            // Do not reposition alert box
             break;
     }
 }
@@ -228,7 +229,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     CGFloat angle = UIInterfaceOrientationAngle(orientation);
     CGAffineTransform rotation = CGAffineTransformMakeRotation(angle);
     
-    // Do nothing if this new rotation is no different from the current rotation.
+    // Do nothing if this new rotation is the same as the current rotation.
     if (CGAffineTransformEqualToTransform(rotation, self.transform))
         return;
     
@@ -518,28 +519,32 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
     if (!self.swipeable)
         return;
     
+    CGPoint dragStartPosition = [self _centerForAlertBox:self.alertBox];
+    
     if (gesture.state == UIGestureRecognizerStateBegan)
     {
         self.state = kMOOSwipeAlertStateDragging;
         
         // Store layer position before adjusting anchor point
         gesture.view.layer.anchorPoint = CGPointMake(0.5f, 0.5f);
-        _dragStartPosition = gesture.view.layer.position;
         [self _adjustAnchorPointForGestureRecognizer:gesture];
     }
     
     else if (gesture.state == UIGestureRecognizerStateChanged)
     {
         // Translate view by panned amount
-        CGPoint translationPoint = [gesture translationInView:gesture.view];
-        CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(0.0f, translationPoint.y);
-        gesture.view.center = CGPointApplyAffineTransform(gesture.view.center, translationTransform);
+//        CGPoint translationPoint = [gesture translationInView:gesture.view];
+//        CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(0.0f, translationPoint.y);
+//        gesture.view.center = CGPointApplyAffineTransform(gesture.view.center, translationTransform);
+        
+        CGPoint touchLocation = [gesture locationInView:gesture.view.superview];
+        CGFloat dragStartPositionXOffset = CGRectGetWidth(gesture.view.bounds) * (gesture.view.layer.anchorPoint.x - 0.5f);
+        gesture.view.center = CGPointMake(dragStartPosition.x + dragStartPositionXOffset, touchLocation.y);
         
         // Set background alpha relative to the distance traveled from zero
-        CGPoint naturalCenter = [self _centerForAlertBox:self.alertBox];
-        CGPoint targetPoint = naturalCenter.y > gesture.view.center.y ? [self _aboveCenterForAlertBox:self.alertBox] : [self _belowCenterForAlertBox:self.alertBox];
-        CGFloat curDistanceFromCenter = fabsf(naturalCenter.y - gesture.view.center.y);
-        CGFloat totalDistanceFromCenter = fabsf(naturalCenter.y - targetPoint.y);
+        CGPoint targetPoint = dragStartPosition.y > gesture.view.center.y ? [self _aboveCenterForAlertBox:self.alertBox] : [self _belowCenterForAlertBox:self.alertBox];
+        CGFloat curDistanceFromCenter = fabsf(dragStartPosition.y - gesture.view.center.y);
+        CGFloat totalDistanceFromCenter = fabsf(dragStartPosition.y - targetPoint.y);
         CGFloat percentDragged = curDistanceFromCenter / totalDistanceFromCenter;
         
         self.backgroundView.alpha = self.backgroundViewAlpha * (1.0f - powf(percentDragged, 3.0f) * self.fadeBackgroundOnDragCoefficient);
@@ -565,7 +570,7 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
         
         // Check whether thresholds reached
         BOOL velocityThresholdReached = fabsf(yVelocity) > self.dismissVelocityThreshold;
-        CGFloat distanceFromStart = currentPosition.y - _dragStartPosition.y;
+        CGFloat distanceFromStart = currentPosition.y - dragStartPosition.y;
         BOOL distanceThresholdReached = fabsf(distanceFromStart) > self.dismissDistanceThreshold;
         if (!velocityThresholdReached)
             yVelocity = distanceFromStart / self.dismissDuration;
@@ -587,12 +592,12 @@ static UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIIn
             if (!shouldDismiss && self.vibrateOnFailedDismiss) [self _vibrate];
             
             // Set position to the start (otherwise the animation "pops back" to the current position)
-            gesture.view.layer.position = _dragStartPosition;
+            gesture.view.layer.position = dragStartPosition;
             
             // Return-to-center animations
 
             // Rubber band animation
-            CAAnimation *rubberBandAnimation = [CAAnimation rubberBandAnimationFromPosition:currentPosition toPosition:_dragStartPosition duration:self.dismissDuration * 2.0];
+            CAAnimation *rubberBandAnimation = [CAAnimation rubberBandAnimationFromPosition:currentPosition toPosition:dragStartPosition duration:self.dismissDuration * 2.0];
             rubberBandAnimation.delegate = self;
             rubberBandAnimation.removedOnCompletion = NO;
             [gesture.view.layer addAnimation:rubberBandAnimation forKey:kMOORubberBandAnimationKey];

@@ -53,7 +53,6 @@ typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 @interface MOOSwipeAlert : UIView <MOOSwipeAlertOptions>
 {
     @private
-    CGPoint _dragStartPosition;
     CGRect _keyboardFrame;
     struct {
         BOOL dismissing: 1;
