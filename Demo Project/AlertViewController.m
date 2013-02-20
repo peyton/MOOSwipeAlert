@@ -66,7 +66,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 #pragma mark - Button event handling
