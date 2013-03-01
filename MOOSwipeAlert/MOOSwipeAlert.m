@@ -72,8 +72,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     // Initialize shared defaults
     MOOSwipeAlertOptions *defaults = [self sharedDefaults];
     defaults.swipeable = YES;
-    defaults.backgroundViewAlpha = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 0.95f : 0.8f;
-    defaults.backgroundStyle = kMOOSwipeAlertBackgroundStyleVignette;
+    defaults.backgroundViewAlpha = 0.8f;
+    defaults.backgroundStyle = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? kMOOSwipeAlertBackgroundStyleFlat : kMOOSwipeAlertBackgroundStyleVignette;
     defaults.fadeBackgroundOnDragCoefficient = 0.5f;
     defaults.showDuration = defaults.dismissDuration = defaults.accessoryViewFadeDuration = 0.3;
     defaults.dismissDistanceThreshold = 75.0f;
@@ -149,7 +149,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     {
         self.backgroundView.frame = CGRectMake(0.0f, 0.0f, backgroundViewDimension, backgroundViewDimension);
         self.backgroundView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-        [self.backgroundView setNeedsDisplay];
+        //[self.backgroundView setNeedsDisplay];
     }
     
     // Size alert box
@@ -840,7 +840,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 - (void)setBackgroundStyle:(MOOSwipeAlertBackgroundStyle)backgroundStyle;
 {
-    if (backgroundStyle == self.backgroundStyle)
+    // Do nothing if we already have a backgroundView of the same style.
+    if (backgroundStyle == self.backgroundStyle && self.backgroundView != nil)
         return;
     
     // Update background style
