@@ -25,6 +25,11 @@ typedef NS_ENUM(NSUInteger, MOOSwipeAlertDirection) {
     kMOOSwipeAlertDirectionUp
 };
 
+typedef NS_ENUM(NSUInteger, MOOSwipeAlertBackgroundStyle) {
+    kMOOSwipeAlertBackgroundStyleFlat,
+    kMOOSwipeAlertBackgroundStyleVignette
+};
+
 // Block types
 typedef void (^MOOSwipeAlertDismissBlock)(MOOSwipeAlert *alert, BOOL animated);
 typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
@@ -34,6 +39,7 @@ typedef BOOL (^MOOSwipeAlertShouldDismissBlock)(MOOSwipeAlert *alert);
 
 @property (nonatomic, assign) BOOL swipeable;
 @property (nonatomic, assign) CGFloat backgroundViewAlpha;
+@property (nonatomic, assign) MOOSwipeAlertBackgroundStyle backgroundStyle;
 @property (nonatomic, assign) CGFloat fadeBackgroundOnDragCoefficient;
 @property (nonatomic, assign) NSTimeInterval showDuration;
 @property (nonatomic, assign) NSTimeInterval dismissDuration;

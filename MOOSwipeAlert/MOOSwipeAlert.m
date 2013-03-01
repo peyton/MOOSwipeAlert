@@ -15,6 +15,7 @@
 #import "CAAnimation+MOOSwipeAlert.h"
 #import "MOOAlertBox.h"
 #import "MOOSwipeAlertHelpers.h"
+#import "MOOVignetteBackgroundView.h"
 
 #define kMOOSwipeAlertiPadWidth 320.f
 
@@ -24,7 +25,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 
 @implementation MOOSwipeAlertOptions
-@synthesize swipeable, backgroundViewAlpha, fadeBackgroundOnDragCoefficient, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showCloseButton;
+@synthesize swipeable, backgroundViewAlpha, backgroundStyle, fadeBackgroundOnDragCoefficient, showDuration, dismissDuration, accessoryViewFadeDuration, dismissDistanceThreshold, dismissVelocityThreshold, wobbleDistance, dismissOnAlertBoxTouch, dismissOnBackgroundTouch, vibrateOnFailedDismiss, showCloseButton;
 @end
 
 @interface MOOSwipeAlert ()
@@ -50,6 +51,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 
 @synthesize swipeable = _swipeable;
 @synthesize backgroundViewAlpha = _backgroundViewAlpha;
+@synthesize backgroundStyle = _backgroundStyle;
 @synthesize fadeBackgroundOnDragCoefficient = _fadeBackgroundOnDragCoefficient;
 @synthesize showDuration = _showDuration;
 @synthesize dismissDuration = _dismissalDuration;
@@ -70,7 +72,8 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     // Initialize shared defaults
     MOOSwipeAlertOptions *defaults = [self sharedDefaults];
     defaults.swipeable = YES;
-    defaults.backgroundViewAlpha = 0.7f;
+    defaults.backgroundViewAlpha = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 0.95f : 0.8f;
+    defaults.backgroundStyle = kMOOSwipeAlertBackgroundStyleVignette;
     defaults.fadeBackgroundOnDragCoefficient = 0.5f;
     defaults.showDuration = defaults.dismissDuration = defaults.accessoryViewFadeDuration = 0.3;
     defaults.dismissDistanceThreshold = 75.0f;
@@ -97,14 +100,6 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.exclusiveTouch = YES;
     
-    // Create background view
-    self.backgroundView = [[UIView alloc] initWithFrame:frame];
-    self.backgroundView.alpha = 0.0f;
-    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.backgroundView.backgroundColor = [UIColor blackColor];
-    self.backgroundView.exclusiveTouch = YES;
-    [self addSubview:self.backgroundView];
-    
     // Create alert box
     self.alertBox = [[MOOAlertBox alloc] initWithFrame:CGRectZero];
     [self addSubview:self.alertBox];
@@ -122,11 +117,6 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     gesture.delegate = self;
     [self.alertBox addGestureRecognizer:gesture];
-    
-    // Create background tap gesture recognizer
-    gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    gesture.delegate = self;
-    [self.backgroundView addGestureRecognizer:gesture];
     
     // Create swipe up and swipe down gesture recognizer
     UISwipeGestureRecognizerDirection directions[2] = {UISwipeGestureRecognizerDirectionUp, UISwipeGestureRecognizerDirectionDown};
@@ -153,8 +143,14 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 {
     [super layoutSubviews];
     
-    // Size and position background view
-    self.backgroundView.frame = self.bounds;
+    // Size and position background view to be square (if needed)
+    CGFloat backgroundViewDimension = fmaxf(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
+    if (fabs(CGRectGetWidth(self.backgroundView.bounds) - backgroundViewDimension) > FLT_EPSILON)
+    {
+        self.backgroundView.frame = CGRectMake(0.0f, 0.0f, backgroundViewDimension, backgroundViewDimension);
+        self.backgroundView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+        [self.backgroundView setNeedsDisplay];
+    }
     
     // Size alert box
     [self.alertBox sizeToFit];
@@ -801,6 +797,35 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
     copyProtocolProperties(@protocol(MOOSwipeAlertOptions), options, self);
 }
 
+- (void)_configureBackgroundViewWithStyle:(MOOSwipeAlertBackgroundStyle)style;
+{
+    // Replace background view as needed
+    [self.backgroundView removeFromSuperview];
+    
+    // Create new background view
+    switch (style)
+    {
+        case kMOOSwipeAlertBackgroundStyleFlat:
+            self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+            self.backgroundView.backgroundColor = [UIColor blackColor];
+            break;
+        case kMOOSwipeAlertBackgroundStyleVignette:
+            self.backgroundView = [[MOOVignetteBackgroundView alloc] initWithFrame:self.bounds];
+            break;
+    }
+    self.backgroundView.alpha = 0.0f;
+    self.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.backgroundView.exclusiveTouch = YES;
+    
+    // Insert the new background view at the bottom of the subview hierarchy
+    [self insertSubview:self.backgroundView atIndex:0];
+    
+    // Create background tap gesture recognizer
+    UIGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    gesture.delegate = self;
+    [self.backgroundView addGestureRecognizer:gesture];
+}
+
 #pragma mark - Getters and setters
 
 - (BOOL)showCloseButton;
@@ -811,6 +836,16 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 - (void)setShowCloseButton:(BOOL)showCloseButton;
 {
     self.alertBox.closeButton.hidden = !showCloseButton;
+}
+
+- (void)setBackgroundStyle:(MOOSwipeAlertBackgroundStyle)backgroundStyle;
+{
+    if (backgroundStyle == self.backgroundStyle)
+        return;
+    
+    // Update background style
+    _backgroundStyle = backgroundStyle;
+    [self _configureBackgroundViewWithStyle:backgroundStyle];
 }
 
 + (id<MOOSwipeAlertOptions>)sharedDefaults;

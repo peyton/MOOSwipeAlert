@@ -69,6 +69,14 @@
     return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)viewWillAppear:(BOOL)animated;
+{
+    self.view.alpha = 0.0f;
+    [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationCurveEaseOut animations:^{
+        self.view.alpha = 1.0f;
+    } completion:NULL];
+}
+
 #pragma mark - Button event handling
 
 - (void)_showButtonPressed1:(id)sender;
