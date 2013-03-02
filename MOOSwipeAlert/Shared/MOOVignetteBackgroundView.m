@@ -50,7 +50,7 @@
     CGRect leftQuadrant = CGRectApplyAffineTransform(self.bounds, CGAffineTransformMakeScale(self.gradientCenter.x, self.gradientCenter.y));
     CGPoint center = CGPointMake(leftQuadrant.size.width, leftQuadrant.size.height);
     
-    CGContextDrawRadialGradient(context, self.gradientRef, center, self.startRadius, center, self.endRadius, kCGGradientDrawsAfterEndLocation);
+    CGContextDrawRadialGradient(context, self.gradientRef, center, self.startRadius, center, self.endRadius, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
 }
 
 #pragma mark - Getters and setters
@@ -61,8 +61,8 @@
     {
         // Create a new gradient
         CGFloat locations[2] = {0.0f, 1.0f};
-        CGFloat colors[4] = {0.0f,0.3f,0.0f,1.0f}; // black, from 0.5f to 1.0f alpha
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+        CGFloat colors[8] = {0.0f,0.f,0.f,0.3f,0.0f,0.f,0.f,1.0f}; // black, from 0.5f to 1.0f alpha
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); // Use RGB instead of gray to mitigate banding.
         _gradientRef = CGGradientCreateWithColorComponents(colorSpace, colors, locations, 2);
         CGColorSpaceRelease(colorSpace);
     }
