@@ -18,55 +18,15 @@
 @synthesize noDisappearAlertView = _noDisappearAlertView;
 @synthesize dismissButton = _dismissButton;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
-{
-    if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
-        return nil;
-    
-    // Configure tab bar
-    self.title = NSLocalizedString(@"Message", @"Message");
-    self.tabBarItem.image = [UIImage imageNamed:@"Alert.png"];
-    
-    return self;
-}
-
 - (void)loadView;
 {
     [super loadView];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    // Create buttons
-    NSArray *buttonTitles = [NSArray arrayWithObjects:@"Alert", @"Alert without title", @"Alert without message", @"Alert with close button", @"Alert without dismissal", @"Alert with block callback", nil];
-    
-    NSUInteger index = 1;
-    UIButton *button;
-    for (NSString *title in buttonTitles)
-    {
-        button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        SEL action = NSSelectorFromString([NSString stringWithFormat:@"_showButtonPressed%u:", index]);
-        if ([self respondsToSelector:action])
-            [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:title forState:UIControlStateNormal];
-        [button sizeToFit];
-        button.center = CGPointMake(CGRectGetMidX(self.view.bounds), index * 50.0f);
-        button.frame = CGRectIntegral(button.frame);
-        [self.view addSubview:button];
-        
-        ++index;
-    }
-    
     
     _dismissButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [_dismissButton addTarget:self action:@selector(_dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
     [_dismissButton sizeToFit];
     _dismissButton.frame = CGRectMake(30.0f, 44.0f, CGRectGetWidth(_dismissButton.frame), CGRectGetHeight(_dismissButton.frame));
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad || interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (void)viewWillAppear:(BOOL)animated;
