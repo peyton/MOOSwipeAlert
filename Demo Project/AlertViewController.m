@@ -18,19 +18,9 @@
 @synthesize noDisappearAlertView = _noDisappearAlertView;
 @synthesize dismissButton = _dismissButton;
 
-- (void)loadView;
-{
-    [super loadView];
-    
-    _dismissButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_dismissButton addTarget:self action:@selector(_dismissButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_dismissButton setTitle:@"Dismiss" forState:UIControlStateNormal];
-    [_dismissButton sizeToFit];
-    _dismissButton.frame = CGRectMake(30.0f, 44.0f, CGRectGetWidth(_dismissButton.frame), CGRectGetHeight(_dismissButton.frame));
-}
-
 - (void)viewWillAppear:(BOOL)animated;
 {
+    [self.dismissButton removeFromSuperview];
     self.view.alpha = 0.0f;
     [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationCurveEaseOut animations:^{
         self.view.alpha = 1.0f;
@@ -39,39 +29,32 @@
 
 #pragma mark - Button event handling
 
-- (void)_showButtonPressed1:(id)sender;
+- (IBAction)showButtonPressed1:(id)sender;
 {
-    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
-    [_alertView show];
+    self.alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
+    [self.alertView show];
 }
 
-- (void)_showButtonPressed2:(id)sender;
+- (void)showButtonPressed2:(id)sender;
 {
-    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:nil message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
-    [_alertView show];
+    self.alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:nil delegate:self];
+    [self.alertView show];
 }
 
-- (void)_showButtonPressed3:(id)sender;
+- (IBAction)showButtonPressed3:(id)sender;
 {
-    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:nil delegate:self];
-    [_alertView show];
+    self.alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:nil message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
+    [self.alertView show];
 }
 
-- (void)_showButtonPressed4:(id)sender;
+- (IBAction)showButtonPressedCloseButton:(id)sender;
 {
-    _alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
-    _alertView.showCloseButton = YES;
-    [_alertView show];
+    self.alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:self];
+    self.alertView.showCloseButton = YES;
+    [self.alertView show];
 }
 
-- (void)_showButtonPressed5:(id)sender;
-{
-    _noDisappearAlertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"You will never dismiss me!!!" delegate:self];
-    [_noDisappearAlertView show];
-    [_noDisappearAlertView addSubview:_dismissButton];
-}
-
-- (void)_showButtonPressed6:(id)sender;
+- (IBAction)showButtonPressed4:(id)sender;
 {
     self.alertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"This is a test of the alert system. There is no cause for alarm." delegate:nil];
     
@@ -84,25 +67,46 @@
     [self.alertView show];
 }
 
-- (void)_dismissButtonPressed:(id)sender;
+- (IBAction)showButtonPressed5:(id)sender;
 {
-    [_dismissButton removeFromSuperview];
-    [_noDisappearAlertView dismissAnimated:YES];
+    self.noDisappearAlertView = [[MOOMessageSwipeAlert alloc] initWithTitle:@"Test alert" message:@"You will never dismiss me!!!" delegate:self];
+    
+    // Add button to allow for dismissal regardless
+    [self.noDisappearAlertView addSubview:self.dismissButton];
+    CGRect dismissButtonFrame = self.dismissButton.frame;
+    CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+    dismissButtonFrame.origin = CGPointMake(20.f, fminf(CGRectGetHeight(statusBarFrame), CGRectGetWidth(statusBarFrame)) + 20.f);
+    self.dismissButton.frame = dismissButtonFrame;
+    
+    
+    [self.noDisappearAlertView show];
+}
+
+- (IBAction)dismissButtonPressed:(id)sender;
+{
+    if (!self.dismissButton || !self.noDisappearAlertView)
+        return;
+    [self.dismissButton removeFromSuperview];
+    [self.noDisappearAlertView dismissAnimated:YES];
 }
 
 #pragma mark - MOOSwipeAlertDelegate methods
 
 - (BOOL)alertViewShouldDismiss:(MOOSwipeAlert *)alertView;
 {
-    return alertView != _noDisappearAlertView;
+    return alertView != self.noDisappearAlertView;
 }
 
 - (void)alertViewDidDismiss:(MOOSwipeAlert *)alertView animated:(BOOL)animated;
 {
-    if (alertView == _alertView)
-        _alertView = nil;
-    else if (alertView == _noDisappearAlertView)
-        _noDisappearAlertView = nil;
+    // Clean up
+    if (alertView == self.alertView)
+        self.alertView = nil;
+    else if (alertView == self.noDisappearAlertView)
+    {
+        [self.dismissButton removeFromSuperview];
+        self.noDisappearAlertView = nil;
+    }
 }
 
 @end
