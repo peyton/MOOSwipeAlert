@@ -5,7 +5,7 @@
 //  Created by Peyton Randolph on 7/10/12.
 //
 
-@class AlertViewController;
+@class BasicsViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
