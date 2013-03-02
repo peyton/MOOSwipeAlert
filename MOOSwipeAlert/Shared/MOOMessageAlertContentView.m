@@ -70,8 +70,8 @@
     
     // Position labels
 
-    CGRect titleFrame;
-    CGRect messageFrame;
+    CGRect titleFrame = CGRectZero;
+    CGRect messageFrame = CGRectZero;
     if (messageSize.height < FLT_EPSILON)
     {
         // If title only, position title in center
