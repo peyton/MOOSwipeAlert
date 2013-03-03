@@ -42,14 +42,28 @@
     [self _createButtonViewsIfNeeded];
     
     CGFloat buttonWidth = self.bounds.size.width - (BUTTON_PADDING - BUTTON_SHADOW_INSETS.left) - (BUTTON_PADDING - BUTTON_SHADOW_INSETS.right);
-    CGAffineTransform shift = CGAffineTransformMakeTranslation(0.f, BUTTON_HEIGHT + BUTTON_PADDING);
+    CGFloat rowOffset = BUTTON_HEIGHT + BUTTON_PADDING;
     CGPoint buttonOrigin = CGPointMake(BUTTON_PADDING - BUTTON_SHADOW_INSETS.left, CGRectGetHeight(self.bounds) - [self _buttonsHeight]);
-    for (UIButton *button in self.buttonViews)
-    {        
-        CGRect buttonFrame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonWidth, BUTTON_HEIGHT + BUTTON_SHADOW_INSETS.top + BUTTON_SHADOW_INSETS.bottom);
-        button.frame = buttonFrame;
-        buttonOrigin = CGPointApplyAffineTransform(buttonOrigin, shift);
+    
+    NSUInteger *rows = malloc([self.buttonViews count] * sizeof(NSUInteger));
+    NSUInteger row = 0;
+    for (NSUInteger i = 0; i < [self.buttonViews count]; i++)
+    {
+        *(rows + i) = row;
+        if (![self.sideBySideIndices containsIndex:i])
+            row++;
     }
+    
+    for (NSUInteger i = 0; i < [self.buttonViews count]; i++)
+    {
+        UIButton *button = [self.buttonViews objectAtIndex:i];
+        CGFloat yOrigin = buttonOrigin.y + *(rows + i) * rowOffset;
+     
+        CGRect buttonFrame = CGRectMake(buttonOrigin.x, yOrigin, buttonWidth, BUTTON_HEIGHT + BUTTON_SHADOW_INSETS.top + BUTTON_SHADOW_INSETS.bottom);
+        button.frame = buttonFrame;
+    }
+    
+    free(rows);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size;
@@ -64,12 +78,31 @@
 - (CGFloat)_buttonsHeight;
 {
     CGFloat height = 0.f;
+    
     if (self.buttons)
     {
         height -= BUTTON_SHADOW_INSETS.top;
-        height += [self.buttons count] * (BUTTON_HEIGHT + BUTTON_PADDING - BUTTON_SHADOW_INSETS.top + BUTTON_SHADOW_INSETS.bottom);
+        height += [self _numRows] * (BUTTON_HEIGHT + BUTTON_PADDING - BUTTON_SHADOW_INSETS.top + BUTTON_SHADOW_INSETS.bottom);
     }
     return height;
+}
+
+- (NSUInteger)_numRows;
+{
+    NSUInteger rowCount = [self.buttons count];
+    if (self.sideBySideIndices)
+    {
+        // Count the number of ranges
+        __block NSUInteger numRanges = 0;
+        [self.sideBySideIndices enumerateRangesUsingBlock:^(NSRange range, BOOL *stop) {
+            numRanges++;
+        }];
+        
+        rowCount -= [self.sideBySideIndices count];
+        rowCount += numRanges;
+    }
+    
+    return rowCount;
 }
 
 #pragma mark - View creation methods

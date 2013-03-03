@@ -14,10 +14,10 @@
 @property (nonatomic, strong) MOOButtonSwipeAlert *alertView;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
-- (IBAction)showButtonPressed1:(id)sender;
-- (IBAction)showButtonPressed2:(id)sender;
-- (IBAction)showButtonPressed3:(id)sender;
-- (IBAction)showButtonPressed4:(id)sender;
-- (IBAction)showButtonPressed5:(id)sender;
+- (IBAction)closeButton:(id)sender;
+- (IBAction)oneButtonsPressed:(id)sender;
+- (IBAction)twoButtonsPressed:(id)sender;
+- (IBAction)threeButtonsPressed:(id)sender;
+- (IBAction)sideBySideButtonPressed:(id)sender;
 
 @end

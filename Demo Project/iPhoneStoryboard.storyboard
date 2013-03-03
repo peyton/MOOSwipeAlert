@@ -30,8 +30,7 @@
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="showButtonPressed1:" destination="Thj-77-UDz" eventType="touchUpInside" id="IRG-Ge-pBb"/>
-                                            <action selector="titleAndMessageButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="mVL-x8-Ksp"/>
+                                            <action selector="closeButton:" destination="Thj-77-UDz" eventType="touchUpInside" id="8YN-ee-sm4"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NQB-8d-iIz">
@@ -46,8 +45,7 @@
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="showButtonPressed2:" destination="Thj-77-UDz" eventType="touchUpInside" id="2OD-6R-mfX"/>
-                                            <action selector="titleOnlyButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="eCC-iu-mZu"/>
+                                            <action selector="oneButtonsPressed:" destination="Thj-77-UDz" eventType="touchUpInside" id="nVb-CF-iJ8"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DjL-sM-R3O">
@@ -62,12 +60,26 @@
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="messageOnlyButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="Z6N-PT-8oB"/>
-                                            <action selector="showButtonPressed3:" destination="Thj-77-UDz" eventType="touchUpInside" id="a8k-6N-8vZ"/>
+                                            <action selector="twoButtonsPressed:" destination="Thj-77-UDz" eventType="touchUpInside" id="81e-cO-24C"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KUl-se-gf5">
                                         <rect key="frame" x="20" y="173" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="titleShadowOffset" width="0.0" height="1"/>
+                                        <state key="normal" title="Three Buttons">
+                                            <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="twoButtonsPressed:" destination="Thj-77-UDz" eventType="touchUpInside" id="hHd-KQ-GK3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TRL-H2-t9S">
+                                        <rect key="frame" x="20" y="224" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
@@ -78,24 +90,7 @@
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="blockCallbackButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="wa6-Pa-sEm"/>
-                                            <action selector="showButtonPressed4:" destination="Thj-77-UDz" eventType="touchUpInside" id="hOh-Dd-NlH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TRL-H2-t9S">
-                                        <rect key="frame" x="20" y="224" width="280" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <size key="titleShadowOffset" width="0.0" height="1"/>
-                                        <state key="normal" title="No Dismissal">
-                                            <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="noDismissalButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="IgK-pO-Br1"/>
-                                            <action selector="showButtonPressed5:" destination="Thj-77-UDz" eventType="touchUpInside" id="l93-Fr-c2J"/>
+                                            <action selector="sideBySideButtonPressed:" destination="Thj-77-UDz" eventType="touchUpInside" id="7rI-vI-6dx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -109,87 +104,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mh-JH-lTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" id="knh-Ek-8mh">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7yS-J9-Qff">
-                            <rect key="frame" x="20" y="20" width="280" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <size key="titleShadowOffset" width="0.0" height="1"/>
-                            <state key="normal" title="Title and Message">
-                                <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="titleAndMessageButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="Mv0-L7-xOM"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AJV-8y-9nw">
-                            <rect key="frame" x="20" y="71" width="280" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <size key="titleShadowOffset" width="0.0" height="1"/>
-                            <state key="normal" title="Title Only">
-                                <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="titleOnlyButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="F84-xr-jHi"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="snW-F8-WRL">
-                            <rect key="frame" x="20" y="122" width="280" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <size key="titleShadowOffset" width="0.0" height="1"/>
-                            <state key="normal" title="Message Only">
-                                <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="messageOnlyButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="F6x-oY-jsp"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fep-Br-UgV">
-                            <rect key="frame" x="20" y="173" width="280" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <size key="titleShadowOffset" width="0.0" height="1"/>
-                            <state key="normal" title="Block Callback">
-                                <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="blockCallbackButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="mYn-UH-JtG"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wqc-Wc-AQ4">
-                            <rect key="frame" x="20" y="224" width="280" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <size key="titleShadowOffset" width="0.0" height="1"/>
-                            <state key="normal" title="No Dismissal">
-                                <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="noDismissalButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="n60-cd-6E1"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </scrollView>
             </objects>
             <point key="canvasLocation" x="325" y="210"/>
         </scene>
@@ -216,10 +130,6 @@
                                             <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="showButtonPressed1:" destination="Thj-77-UDz" eventType="touchUpInside" id="QGv-En-Bsr"/>
-                                            <action selector="titleAndMessageButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="8w7-Wq-Nkh"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2sp-u5-Aza">
                                         <rect key="frame" x="20" y="71" width="280" height="44"/>
@@ -232,10 +142,6 @@
                                             <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="showButtonPressed2:" destination="Thj-77-UDz" eventType="touchUpInside" id="YG8-oO-Yq8"/>
-                                            <action selector="titleOnlyButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="K7W-OM-M4q"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="69o-1J-XyA">
                                         <rect key="frame" x="20" y="122" width="280" height="44"/>
@@ -248,10 +154,6 @@
                                             <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="messageOnlyButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="0he-zW-MbU"/>
-                                            <action selector="showButtonPressed3:" destination="Thj-77-UDz" eventType="touchUpInside" id="9Jh-8r-aGc"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B7R-SR-S9n">
                                         <rect key="frame" x="20" y="173" width="280" height="44"/>
@@ -264,10 +166,6 @@
                                             <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="blockCallbackButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="9yh-Hg-i9c"/>
-                                            <action selector="showButtonPressed4:" destination="Thj-77-UDz" eventType="touchUpInside" id="pW6-1C-LIU"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WJo-Tj-BHH">
                                         <rect key="frame" x="20" y="224" width="280" height="44"/>
@@ -280,10 +178,6 @@
                                             <color key="titleColor" white="0.26000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="noDismissalButtonPressed:" destination="gg7-0L-NgL" eventType="touchUpInside" id="eqQ-HE-osQ"/>
-                                            <action selector="showButtonPressed5:" destination="Thj-77-UDz" eventType="touchUpInside" id="TrQ-6p-Ssd"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </scrollView>
@@ -519,11 +413,11 @@
         <class className="ButtonsViewController" superclassName="ViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ButtonsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showButtonPressed1:"/>
-                <relationship kind="action" name="showButtonPressed2:"/>
-                <relationship kind="action" name="showButtonPressed3:"/>
-                <relationship kind="action" name="showButtonPressed4:"/>
-                <relationship kind="action" name="showButtonPressed5:"/>
+                <relationship kind="action" name="closeButton:"/>
+                <relationship kind="action" name="oneButtonsPressed:"/>
+                <relationship kind="action" name="sideBySideButtonPressed:"/>
+                <relationship kind="action" name="threeButtonsPressed:"/>
+                <relationship kind="action" name="twoButtonsPressed:"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
