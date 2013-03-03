@@ -5,16 +5,16 @@
 //  Created by Peyton Randolph on 6/13/12.
 //
 
-#import "MOOMessageAlertContentView.h"
+#import "MOOMessageContentView.h"
 
-@interface MOOMessageAlertContentView ()
+@interface MOOMessageContentView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *messageLabel;
 
 @end
 
-@implementation MOOMessageAlertContentView
+@implementation MOOMessageContentView
 @synthesize titleLabel = _titleLabel;
 @synthesize messageLabel = _messageLabel;
 @synthesize contentInsets = _contentInsets;
@@ -31,7 +31,8 @@
     
     // Set view defaults
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.backgroundColor = [UIColor colorWithRed:115.f/255.f green:123.f/255.f blue:132.f/255.f alpha:1.0f];
+    self.backgroundColor = [UIColor colorWithWhite:0.47f alpha:1.0f];
+//    self.backgroundColor = [UIColor colorWithRed:115.f/255.f green:123.f/255.f blue:132.f/255.f alpha:1.0f];
     
     // Create title label
     self.titleLabel = [self _createLabelWithFont:[UIFont boldSystemFontOfSize:24.0f]];

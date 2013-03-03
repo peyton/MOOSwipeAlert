@@ -6,7 +6,7 @@
 //
 
 
-@interface MOOMessageAlertContentView : UIView
+@interface MOOMessageContentView : UIView
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 @property (nonatomic, strong, readonly) UILabel *messageLabel;

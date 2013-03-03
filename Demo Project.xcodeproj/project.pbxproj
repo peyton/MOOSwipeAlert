@@ -10,6 +10,8 @@
 		9C46B62715ACF78B007FD187 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62615ACF78B007FD187 /* Icon.png */; };
 		9C46B62915ACF792007FD187 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C46B62815ACF792007FD187 /* Icon@2x.png */; };
 		9C704BE016D52592000C0099 /* MOOSwipeAlertHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C704BDF16D52592000C0099 /* MOOSwipeAlertHelpers.m */; };
+		9C8510D316E3124800C10D5D /* MOOButtonSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8510D216E3124800C10D5D /* MOOButtonSwipeAlert.m */; };
+		9C8510D616E3B01600C10D5D /* MOOButtonContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8510D516E3B01600C10D5D /* MOOButtonContentView.m */; };
 		9C90A2EC16E13E7A004F326F /* MOOVignetteBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C90A2EB16E13E7A004F326F /* MOOVignetteBackgroundView.m */; };
 		9C9A8E2516E152B400B3C677 /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9A8E2416E152B400B3C677 /* iPhoneStoryboard.storyboard */; };
 		9C9A8E6216E1572800B3C677 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A8E6116E1572800B3C677 /* TabBarController.m */; };
@@ -55,7 +57,7 @@
 		9CF8024116D1B17800610D70 /* MOOSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023416D1B17800610D70 /* MOOSwipeAlert.m */; };
 		9CF8024216D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023716D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m */; };
 		9CF8024316D1B17800610D70 /* MOOAlertBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023916D1B17800610D70 /* MOOAlertBox.m */; };
-		9CF8024416D1B17800610D70 /* MOOMessageAlertContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */; };
+		9CF8024416D1B17800610D70 /* MOOMessageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023B16D1B17800610D70 /* MOOMessageContentView.m */; };
 		9CF8024516D1B17800610D70 /* MOOSwipeAlertConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */; };
 		9CF8024616D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9CF8023F16D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,10 @@
 		9C46B62815ACF792007FD187 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		9C704BDF16D52592000C0099 /* MOOSwipeAlertHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlertHelpers.m; sourceTree = "<group>"; };
 		9C704BE116D525B4000C0099 /* MOOSwipeAlertHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlertHelpers.h; sourceTree = "<group>"; };
+		9C8510D116E3124800C10D5D /* MOOButtonSwipeAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOButtonSwipeAlert.h; sourceTree = "<group>"; };
+		9C8510D216E3124800C10D5D /* MOOButtonSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOButtonSwipeAlert.m; sourceTree = "<group>"; };
+		9C8510D416E3B01600C10D5D /* MOOButtonContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOButtonContentView.h; sourceTree = "<group>"; };
+		9C8510D516E3B01600C10D5D /* MOOButtonContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOButtonContentView.m; sourceTree = "<group>"; };
 		9C90A2EA16E13E7A004F326F /* MOOVignetteBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOVignetteBackgroundView.h; sourceTree = "<group>"; };
 		9C90A2EB16E13E7A004F326F /* MOOVignetteBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOVignetteBackgroundView.m; sourceTree = "<group>"; };
 		9C9A8E2416E152B400B3C677 /* iPhoneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
@@ -124,8 +130,8 @@
 		9CF8023716D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+MOOSwipeAlert.m"; sourceTree = "<group>"; };
 		9CF8023816D1B17800610D70 /* MOOAlertBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOAlertBox.h; sourceTree = "<group>"; };
 		9CF8023916D1B17800610D70 /* MOOAlertBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOAlertBox.m; sourceTree = "<group>"; };
-		9CF8023A16D1B17800610D70 /* MOOMessageAlertContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageAlertContentView.h; sourceTree = "<group>"; };
-		9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageAlertContentView.m; sourceTree = "<group>"; };
+		9CF8023A16D1B17800610D70 /* MOOMessageContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOMessageContentView.h; sourceTree = "<group>"; };
+		9CF8023B16D1B17800610D70 /* MOOMessageContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOMessageContentView.m; sourceTree = "<group>"; };
 		9CF8023C16D1B17800610D70 /* MOOSwipeAlertConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOSwipeAlertConstants.h; sourceTree = "<group>"; };
 		9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOSwipeAlertConstants.m; sourceTree = "<group>"; };
 		9CF8023F16D1B17800610D70 /* Default.MOOSwipeAlertTheme.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Default.MOOSwipeAlertTheme.bundle; sourceTree = "<group>"; };
@@ -248,6 +254,8 @@
 		9CF8023016D1B17800610D70 /* MOOSwipeAlert */ = {
 			isa = PBXGroup;
 			children = (
+				9C8510D116E3124800C10D5D /* MOOButtonSwipeAlert.h */,
+				9C8510D216E3124800C10D5D /* MOOButtonSwipeAlert.m */,
 				9CF8023116D1B17800610D70 /* MOOMessageSwipeAlert.h */,
 				9CF8023216D1B17800610D70 /* MOOMessageSwipeAlert.m */,
 				9CF8023316D1B17800610D70 /* MOOSwipeAlert.h */,
@@ -265,8 +273,10 @@
 				9CF8023716D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m */,
 				9CF8023816D1B17800610D70 /* MOOAlertBox.h */,
 				9CF8023916D1B17800610D70 /* MOOAlertBox.m */,
-				9CF8023A16D1B17800610D70 /* MOOMessageAlertContentView.h */,
-				9CF8023B16D1B17800610D70 /* MOOMessageAlertContentView.m */,
+				9C8510D416E3B01600C10D5D /* MOOButtonContentView.h */,
+				9C8510D516E3B01600C10D5D /* MOOButtonContentView.m */,
+				9CF8023A16D1B17800610D70 /* MOOMessageContentView.h */,
+				9CF8023B16D1B17800610D70 /* MOOMessageContentView.m */,
 				9CF8023C16D1B17800610D70 /* MOOSwipeAlertConstants.h */,
 				9CF8023D16D1B17800610D70 /* MOOSwipeAlertConstants.m */,
 				9C704BE116D525B4000C0099 /* MOOSwipeAlertHelpers.h */,
@@ -384,7 +394,7 @@
 				9CF8024116D1B17800610D70 /* MOOSwipeAlert.m in Sources */,
 				9CF8024216D1B17800610D70 /* CAAnimation+MOOSwipeAlert.m in Sources */,
 				9CF8024316D1B17800610D70 /* MOOAlertBox.m in Sources */,
-				9CF8024416D1B17800610D70 /* MOOMessageAlertContentView.m in Sources */,
+				9CF8024416D1B17800610D70 /* MOOMessageContentView.m in Sources */,
 				9CF8024516D1B17800610D70 /* MOOSwipeAlertConstants.m in Sources */,
 				9C704BE016D52592000C0099 /* MOOSwipeAlertHelpers.m in Sources */,
 				9C90A2EC16E13E7A004F326F /* MOOVignetteBackgroundView.m in Sources */,
@@ -392,6 +402,8 @@
 				9C9A8E9716E2828C00B3C677 /* ViewController.m in Sources */,
 				9C9A8E9A16E2836B00B3C677 /* ButtonsViewController.m in Sources */,
 				9C9A8E9D16E2875B00B3C677 /* TransitionsViewController.m in Sources */,
+				9C8510D316E3124800C10D5D /* MOOButtonSwipeAlert.m in Sources */,
+				9C8510D616E3B01600C10D5D /* MOOButtonContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

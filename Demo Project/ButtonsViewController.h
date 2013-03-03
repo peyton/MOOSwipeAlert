@@ -7,11 +7,11 @@
 
 #import "ViewController.h"
 
-#import "MOOMessageSwipeAlert.h"
+#import "MOOButtonSwipeAlert.h"
 
 @interface ButtonsViewController : ViewController <MOOSwipeAlertDelegate>
 
-@property (nonatomic, strong) MOOMessageSwipeAlert *alertView;
+@property (nonatomic, strong) MOOButtonSwipeAlert *alertView;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)showButtonPressed1:(id)sender;

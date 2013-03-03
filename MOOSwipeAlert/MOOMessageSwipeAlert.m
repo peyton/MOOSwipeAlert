@@ -8,7 +8,7 @@
 #import "MOOMessageSwipeAlert.h"
 
 #import "MOOAlertBox.h"
-#import "MOOMessageAlertContentView.h"
+#import "MOOMessageContentView.h"
 
 @interface MOOMessageSwipeAlert ()
 
@@ -24,7 +24,7 @@
         return nil;
     
     // Create alert message
-    self.alertBox.contentView = [[MOOMessageAlertContentView alloc] initWithFrame:CGRectZero];
+    self.alertBox.contentView = [[MOOMessageContentView alloc] initWithFrame:CGRectZero];
     
     return self;
 }
@@ -46,36 +46,36 @@
 
 - (NSString *)title;
 {
-    if (![self.alertBox.contentView isKindOfClass:[MOOMessageAlertContentView class]])
+    if (![self.alertBox.contentView isKindOfClass:[MOOMessageContentView class]])
         return nil;
     
-    return [((MOOMessageAlertContentView *)self.alertBox.contentView).titleLabel.text copy];
+    return [((MOOMessageContentView *)self.alertBox.contentView).titleLabel.text copy];
 }
 
 - (void)setTitle:(NSString *)title;
 {
-    if (![self.alertBox.contentView isKindOfClass:[MOOMessageAlertContentView class]])
+    if (![self.alertBox.contentView isKindOfClass:[MOOMessageContentView class]])
         return;
     
-    ((MOOMessageAlertContentView *)self.alertBox.contentView).titleLabel.text = [title copy];
+    ((MOOMessageContentView *)self.alertBox.contentView).titleLabel.text = [title copy];
     
     [self setNeedsLayout];
 }
 
 - (NSString *)message;
 {
-    if (![self.alertBox.contentView isKindOfClass:[MOOMessageAlertContentView class]])
+    if (![self.alertBox.contentView isKindOfClass:[MOOMessageContentView class]])
         return nil;
     
-    return [((MOOMessageAlertContentView *)self.alertBox.contentView).messageLabel.text copy];
+    return [((MOOMessageContentView *)self.alertBox.contentView).messageLabel.text copy];
 }
 
 - (void)setMessage:(NSString *)message;
 {
-    if (![self.alertBox.contentView isKindOfClass:[MOOMessageAlertContentView class]])
+    if (![self.alertBox.contentView isKindOfClass:[MOOMessageContentView class]])
         return;
     
-    ((MOOMessageAlertContentView *)self.alertBox.contentView).messageLabel.text = [message copy];
+    ((MOOMessageContentView *)self.alertBox.contentView).messageLabel.text = [message copy];
     
     [self setNeedsLayout];
 }

@@ -783,7 +783,7 @@ static NSString * const kMOOWobbleAnimationKey = @"kMOOWobbleAnimationKey";
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
 {
     UIView *target = [gestureRecognizer.view hitTest:[touch locationInView:gestureRecognizer.view] withEvent:nil];
-    if ([target isKindOfClass:[UIControl class]] || [target isKindOfClass:[UITextField class]] || [target isKindOfClass:[UITextView class]])
+    if ([target isKindOfClass:[UITextField class]] || [target isKindOfClass:[UITextView class]])
         return NO;
     
     return YES;
